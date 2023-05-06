@@ -40,31 +40,19 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                selected_item_index = (selected_item_index - 1) % len(menu_items)
-            elif event.key == pygame.K_DOWN:
-                selected_item_index = (selected_item_index + 1) % len(menu_items)
-            elif event.key == pygame.K_RETURN:
-                if selected_item_index == 0:
-                    print("Starting game...")
-                elif selected_item_index == 1:
-                    print("Opening settings...")
-                elif selected_item_index == 2:
-                    running = False
-        elif event.type == pygame.MOUSEBUTTONUP:
+        elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             for i, item in enumerate(menu_items):
                 text = menu_font.render(item, True, black)
                 text_rect = text.get_rect()
                 text_rect.center = (screen_width // 2, 200 + i * 75)
-                if text_rect.collidepoint(mouse_pos):
+                if text_rect.collidepoint(mouse_pos) and event.button == 1: 
                     if i == 0:
                         print("Starting learning...")
                     elif i == 1:
                         print("Starting Casino...")
                     elif i == 2:
-                        print("Openign Shop...")
+                        exec(open("./shop.py").read())
                     elif i == 3:
                         print("Opening Showroom...")
                     elif i == 4:
