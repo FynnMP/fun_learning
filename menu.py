@@ -1,6 +1,7 @@
 import pygame
 
 pygame.init()
+# test 
 
 # Set up the screen
 screen_width = 800
