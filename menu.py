@@ -46,7 +46,7 @@ while running:
                 text = menu_font.render(item, True, black)
                 text_rect = text.get_rect()
                 text_rect.center = (screen_width // 2, 200 + i * 75)
-                if text_rect.collidepoint(mouse_pos) and event.button == 1: 
+                if text_rect.collidepoint(mouse_pos) and event.button == 1:
                     if i == 0:
                         print("Starting learning...")
                     elif i == 1:
@@ -78,7 +78,7 @@ while running:
         screen.blit(text, text_rect)
 
     # Update the screen
-    pygame.display.flip()
+    pygame.display.update()
 
 # Clean up
 pygame.quit()
