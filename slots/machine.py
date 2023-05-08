@@ -70,10 +70,10 @@ class Machine:
 
     def spawn_reels(self):
         if not self.reel_list:
-            x_topleft, y_topleft = 10, -300
+            x_topleft, y_topleft = 10, -100
         while self.reel_index < 5:
             if self.reel_index > 0:
-                x_topleft, y_topleft = x_topleft + (300 + X_OFFSET), y_topleft
+                x_topleft, y_topleft = x_topleft + (100 + X_OFFSET), y_topleft
             
             self.reel_list[self.reel_index] = Reel((x_topleft, y_topleft)) # Need to create reel class
             self.reel_index += 1

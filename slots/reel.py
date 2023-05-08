@@ -69,12 +69,13 @@ class Symbol(pygame.sprite.Sprite):
         self.pos = pos
         self.idx = idx
         self.image = pygame.image.load(pathToFile).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (150, 150))
         self.rect = self.image.get_rect(topleft = pos)
         self.x_val = self.rect.left
 
         # Used for win animations
-        self.size_x = 300
-        self.size_y = 300
+        self.size_x = 200
+        self.size_y = 200
         self.alpha = 255
         self.fade_out = False
         self.fade_in = False

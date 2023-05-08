@@ -14,7 +14,9 @@ class Game:
         pygame.display.set_caption('Slot Machine Demo')
         self.clock = pygame.time.Clock()
         self.bg_image = pygame.image.load(BG_IMAGE_PATH).convert_alpha()
+        self.bg_image = pygame.transform.scale(self.bg_image, (WIDTH, HEIGHT))
         self.grid_image = pygame.image.load(GRID_IMAGE_PATH).convert_alpha()
+        self.grid_image = pygame.transform.scale(self.grid_image, (WIDTH, HEIGHT))
         self.machine = Machine()
         self.delta_time = 0
 
