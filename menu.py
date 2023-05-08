@@ -54,7 +54,7 @@ while running:
                     elif i == 2:
                         exec(open("./shop.py").read())
                     elif i == 3:
-                        print("Opening Showroom...")
+                        exec(open("./showroom.py").read())
                     elif i == 4:
                         running = False
 

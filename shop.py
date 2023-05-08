@@ -105,7 +105,12 @@ def draw_items(scroll_y):
 
          # Draw buy button
         button_rect = pygame.Rect(80, item_height+12, 60, 25)
-        pygame.draw.rect(item_surface, WHITE, button_rect)
+        # grey buy button if to little money or already bought
+        if item["price"] > sum(money) or item in inventory:
+            pygame.draw.rect(item_surface, GRAY, button_rect)
+        else: 
+            pygame.draw.rect(item_surface, WHITE, button_rect)
+
         if item in inventory:
             button_text = font2.render('Bought', True, BLACK)
         else: 
@@ -146,10 +151,7 @@ def handle_events(scroll_y):
                 # buying logic 
                 if button_rect.collidepoint(pos) and event.button == 1 and item not in inventory and sum(money)>= item["price"]:
                     inventory.append(item)
-                    money.append(-item["price"])    
-
-                elif button_rect.collidepoint(pos) and event.button == 1 and item not in inventory and sum(money)<item["price"]:
-                    print("Not enough money!")
+                    money.append(-item["price"])
         
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 4: # Scroll up
