@@ -38,7 +38,7 @@ class UI:
         if self.player.last_payout:
             last_payout = player_data['last_payout']
             win_surf = self.win_font.render("WIN! $" + last_payout, True, TEXT_COLOR, None)
-            x1 = 800
+            x1 = 600
             y1 = self.display_surface.get_size()[1] - 60
             win_surf = pygame.transform.rotate(win_surf, self.win_text_angle)
             win_rect = win_surf.get_rect(center = (x1, y1))

@@ -74,8 +74,8 @@ class Symbol(pygame.sprite.Sprite):
         self.x_val = self.rect.left
 
         # Used for win animations
-        self.size_x = 200
-        self.size_y = 200
+        self.size_x = 160
+        self.size_y = 160
         self.alpha = 255
         self.fade_out = False
         self.fade_in = False
