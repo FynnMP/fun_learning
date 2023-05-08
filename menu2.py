@@ -12,6 +12,23 @@ class GameImg:
         self.lbl = Label(window, image = self.im) # initiating a label to be positioned on the window
         self.lbl.place(x=dis_x+x_pos, y=y_pos*dis+0.7*dis, anchor=CENTER) # This line is places the label using the defined coordinates with some fixed addition
 
+
+# The NewWindowDescr Class enables the initiation of "top level" windows. 
+# This means that a new window is opened over the "original" one. 
+class NewWindowDescr(Toplevel):
+
+    def __init__(self, master = None, description = None):
+
+        super().__init__(master = window) # The Tkinter (Tk()) element which is the underlying the initiation window 
+        self.title("Help Terminal") # The top level window caption
+        self.geometry("500x350") # Size of the window
+        self.configure(background="darkgrey") # Background color of the window 
+        # Creating different text elements:
+        titel = Label(self, text ="Help", font = "Helvetica 18 bold", foreground="black", background="darkgrey") # Titel text and all the specifics
+        titel.place(relx = 0.5, rely = 0.1, anchor = CENTER) # Determining the position of the textelement "titel"
+        descr = Label(self, text = description, font = "Helvetica 14", foreground="black", background="darkgrey") # Description text and all the specifics
+        descr.place(relx = 0.5, rely = 0.5, anchor = CENTER) # Determining the position of the textelement "descr"
+
 # After having defined different classes the actual window is defined and designed
 window = Tk()
 # creating a graphical element of the GUI with the background color white
@@ -50,9 +67,26 @@ style = Style()
 style.theme_use('default')
 # Title of the games and text of the widgets text 
 style.configure("TButton", font="Helvetica 12 bold", background="#9FD0DD", foreground="black") # Buttons
+style.configure("W.TButton", font="Helvetica 8 bold", background="#B2B2B2", foreground="black") # Buttons
 style.configure("TLabel", font="Helvetica 18 bold", background="white", foreground="#E78200") # Game Titles
 
 
+# Help Button
+btn = Button(window, text="Help",style="W.TButton")
+btn.place(relx=0.9, y=30, anchor=CENTER)
+btn.bind("<Button>", lambda e: NewWindowDescr(window,
+                                              "         Welcome to our LEARNxCASINO platform. \n"
+                                              "         In the Learning section you can earn money by \n"
+                                              "         memorizing important concepts of Strategic \n"
+                                              "         Management or Accounting. \n"
+                                              "         You can use that money to visit the Casino \n"
+                                              "         and easily multiply it in a short amount \n"
+                                              "         of time - or loose it all. \n"
+                                              "         The money you gained can be used in the shop to \n"
+                                              "         buy fancy items, such as cars, watches, \n"
+                                              "         boats, and art. \n"
+                                              "         Don´t forget to inspect your purchased items in \n" 
+                                              "         high resolution in the showroom"))
 
 # relative placement title and button of game
 rx_title = 0.5
@@ -117,6 +151,7 @@ btn3_2.place(relx=rx_button3, y=3*dis+dis_lb, anchor=CENTER)
 # Current Balance
 l_titel_DB = Label(window, text="Your current balance is: 25$", background= "white", foreground= "black", font="Helvetica 12 bold")
 l_titel_DB.place(relx=rx_title, y=4*dis+dis_lt+13, anchor="center")
+
 
 
 # The before specified window size (wgeox, wgeoy) is now bound to the window. 
