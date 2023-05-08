@@ -14,7 +14,7 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 gray = (128, 128, 128)
 
-# Define fonts
+# Define fonts 123
 title_font = pygame.font.SysFont("comicsansms", 72)
 menu_font = pygame.font.SysFont("comicsansms", 48)
 

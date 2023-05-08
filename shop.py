@@ -71,7 +71,7 @@ items = [
         'image': pygame.image.load('./Assets/item15.jpeg')
     }
 ]
-
+# testing comment
 
 # Define inventory
 inventory = []
