@@ -7,8 +7,8 @@ class UI:
         self.player = player
         self.display_surface = pygame.display.get_surface()
         try:
-            self.font, self.bet_font = pygame.font.SysFont(None, 20), pygame.font.SysFont(None, 20)
-            self.win_font = pygame.font.SysFont(None, 20)
+            self.font, self.bet_font = pygame.font.SysFont(None, 30), pygame.font.SysFont(None, 30)
+            self.win_font = pygame.font.SysFont(None, 30)
         except:
             print("Error loading font!")
             print(f"Currently, the UI_FONT variable is set to {UI_FONT}")
