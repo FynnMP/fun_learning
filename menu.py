@@ -50,7 +50,7 @@ while running:
                     if i == 0:
                         print("Starting learning...")
                     elif i == 1:
-                        print("Starting Casino...")
+                        exec(open("./slot_machine.py").read())
                     elif i == 2:
                         exec(open("./shop.py").read())
                     elif i == 3:
