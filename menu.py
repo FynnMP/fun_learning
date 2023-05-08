@@ -48,7 +48,7 @@ while running:
                 text_rect.center = (screen_width // 2, 200 + i * 75)
                 if text_rect.collidepoint(mouse_pos) and event.button == 1:
                     if i == 0:
-                        print("Starting learning...")
+                        exec(open("./memory.py").read())
                     elif i == 1:
                         exec(open("./slot_machine.py").read())
                     elif i == 2:
