@@ -1,4 +1,5 @@
 import pygame
+import json
 
 # Initialize Pygame
 pygame.init()
@@ -20,61 +21,14 @@ font = pygame.font.SysFont(None, 30)
 font2 = pygame.font.SysFont(None, 20)
 
 # Define items
-items = [
-    {
-        'name': 'Car 1',
-        'price': 10,
-        'image': pygame.image.load('./Assets/item1.jpg')
-    },
-    {
-        'name': 'Car 2',
-        'price': 20,
-        'image': pygame.image.load('./Assets/item2.jpg')
-    },
-    {
-        'name': 'Car 3',
-        'price': 30,
-        'image': pygame.image.load('./Assets/item3.png')
-    },
+with open('shop_items.json', 'r+') as shop_items:
+    items = json.load(shop_items)
 
-    {
-        'name': 'Car 4',
-        'price': 30,
-        'image': pygame.image.load('./Assets/item3.png')
-    },
 
-    {
-        'name': 'Car 5',
-        'price': 30,
-        'image': pygame.image.load('./Assets/item3.png')
-    },
-    
-    {
-        'name': 'Car 6',
-        'price': 30,
-        'image': pygame.image.load('./Assets/item3.png')
-    },
-    # Add more items here...
-    {
-        'name': 'Watch',
-        'price': 130,
-        'image': pygame.image.load('./Assets/item13.jpg')
-    },
-    {
-        'name': 'Boat 1',
-        'price': 140,
-        'image': pygame.image.load('./Assets/item14.jpeg')
-    },
-    {
-        'name': 'Boat 2',
-        'price': 150,
-        'image': pygame.image.load('./Assets/item15.jpeg')
-    }
-]
-# testing comment
+# Define inventory 
+with open("inventory.json", "r") as inventory:
+    inventory = json.load(inventory)
 
-# Define inventory
-inventory = []
 
 
 # Define wallet 
@@ -87,8 +41,12 @@ def draw_items(scroll_y):
     row_height = 250
     item_width = 150
     item_height = 150
-    margin = 40 # margins between items 
-    for i, item in enumerate(items):
+    margin = 40 # margins between items
+    
+    # counter of items to display at correct position
+    i = 0
+
+    for item in items: 
         row = i // 4
         col = i % 4
         item_x = x + col * (item_width + margin)
@@ -96,31 +54,37 @@ def draw_items(scroll_y):
         # Create new surface with desired item size
         item_surface = pygame.Surface((item_width, item_height+50))
         # Blit item image onto new surface
-        item_image = pygame.transform.scale(item['image'], (item_width, item_height))
+        item_img = pygame.image.load(items[item]['image'])
+        item_image = pygame.transform.scale(item_img, (item_width, item_height))
         item_surface.blit(item_image, (0, 0))
-        name_text = font2.render(item['name'], True, WHITE)
-        price_text = font.render('$' + str(item['price']), True, WHITE)
+        name_text = font2.render(items[item]["description"], True, WHITE)
+        price_text = font.render('$' + str(items[item]["price"]), True, WHITE)
         item_surface.blit(name_text, (10, item_height+5))
         item_surface.blit(price_text, (10, item_height+25))
 
-         # Draw buy button
+        # Draw buy button
         button_rect = pygame.Rect(80, item_height+12, 60, 25)
         # grey buy button if to little money or already bought
-        if item["price"] > sum(money) or item in inventory:
+        with open("inventory.json", "r") as inventory:
+            inventory = json.load(inventory)
+        if items[item]["price"] > sum(money) or item in inventory:
             pygame.draw.rect(item_surface, GRAY, button_rect)
         else: 
             pygame.draw.rect(item_surface, WHITE, button_rect)
 
-        if item in inventory:
+        if item in inventory.keys():
             button_text = font2.render('Bought', True, BLACK)
         else: 
             button_text = font2.render('Buy', True, BLACK)
         button_text_rect = button_text.get_rect()
         button_text_rect.center = button_rect.center
         item_surface.blit(button_text, button_text_rect)
-        
+            
         # Draw item surface onto screen
         screen.blit(item_surface, (item_x, item_y))
+
+        i += 1
+
 
 # event handler
 def handle_events(scroll_y):
@@ -148,14 +112,22 @@ def handle_events(scroll_y):
                 button_rect.y = item_y + button_rect.y
 
                 # buying logic 
-                if button_rect.collidepoint(pos) and event.button == 1 and item not in inventory and sum(money)>= item["price"]:
-                    inventory.append(item)
-                    money.append(-item["price"])
-        
+                if button_rect.collidepoint(pos) and event.button == 1 and item not in inventory and sum(money)>= items[item]["price"]:
+                    # update json inventory with newly bought item                    
+                    with open("inventory.json", "r") as jsonFile:
+                        old_inventory = json.load(jsonFile)
+                        new_inventory = old_inventory
+                        new_inventory[item] = items[item]
+                    with open("inventory.json", 'w') as jsonFile:
+                        json.dump(new_inventory, jsonFile)
+
+
+                    money.append(-items[item]["price"])
+
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 4: # Scroll up
                 scroll_y = max(scroll_y - 20, 0)
-            elif event.button == 5: # Scroll down
+            elif event.button == 5 and scroll_y <= 490: # Scroll down and stop at bottom
                 scroll_y += 20
     return scroll_y
 
