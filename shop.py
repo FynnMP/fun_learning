@@ -136,9 +136,9 @@ def handle_events(scroll_y):
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 4: # Scroll up
-                scroll_y = max(scroll_y - 20, 0)
+                scroll_y = max(scroll_y - 30, 0)
             elif event.button == 5 and scroll_y <= 490: # Scroll down and stop at bottom
-                scroll_y += 20
+                scroll_y += 30
     return scroll_y
 
 
