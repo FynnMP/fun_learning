@@ -80,13 +80,12 @@ btn.bind("<Button>", lambda e: NewWindowDescr(window,
                                               "         memorizing important concepts of Strategic \n"
                                               "         Management or Accounting. \n"
                                               "         You can use that money to visit the Casino \n"
-                                              "         and easily multiply it in a short amount \n"
-                                              "         of time - or loose it all. \n"
+                                              "         and easily multiply it - or loose it all. \n"
                                               "         The money you gained can be used in the shop to \n"
                                               "         buy fancy items, such as cars, watches, \n"
                                               "         boats, and art. \n"
                                               "         Don´t forget to inspect your purchased items in \n" 
-                                              "         high resolution in the showroom"))
+                                              "         high resolution in the showroom."))
 
 # relative placement title and button of game
 rx_title = 0.5

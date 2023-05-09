@@ -24,12 +24,12 @@ items = [
     {
         'name': 'Car 1',
         'price': 10,
-        'image': pygame.image.load('./Assets/item1.jpeg')
+        'image': pygame.image.load('./Assets/item1.jpg')
     },
     {
         'name': 'Car 2',
         'price': 20,
-        'image': pygame.image.load('./Assets/item2.png')
+        'image': pygame.image.load('./Assets/item2.jpg')
     },
     {
         'name': 'Car 3',
@@ -58,7 +58,7 @@ items = [
     {
         'name': 'Watch',
         'price': 130,
-        'image': pygame.image.load('./Assets/item13.jpeg')
+        'image': pygame.image.load('./Assets/item13.jpg')
     },
     {
         'name': 'Boat 1',
@@ -126,7 +126,6 @@ def draw_items(scroll_y):
 def handle_events(scroll_y):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            exec(open("./menu.py").read())
             pygame.quit()
             quit()
         elif event.type == pygame.MOUSEBUTTONUP:
