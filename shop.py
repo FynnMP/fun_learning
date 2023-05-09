@@ -32,7 +32,9 @@ with open("inventory.json", "r") as inventory:
 
 
 # Define wallet 
-money = [5,2,4,3,54]
+with open("wallet.json", "r") as wallet:
+    wallet = json.load(wallet)
+    money = wallet["money"]
 
 # Define function to draw items on the screen
 def draw_items(scroll_y):
@@ -57,7 +59,7 @@ def draw_items(scroll_y):
         item_img = pygame.image.load(items[item]['image'])
         item_image = pygame.transform.scale(item_img, (item_width, item_height))
         item_surface.blit(item_image, (0, 0))
-        name_text = font2.render(items[item]["description"], True, WHITE)
+        name_text = font2.render(items[item]["name"], True, WHITE)
         price_text = font.render('$' + str(items[item]["price"]), True, WHITE)
         item_surface.blit(name_text, (10, item_height+5))
         item_surface.blit(price_text, (10, item_height+25))
@@ -121,8 +123,16 @@ def handle_events(scroll_y):
                     with open("inventory.json", 'w') as jsonFile:
                         json.dump(new_inventory, jsonFile)
 
+                    # update json wallet with newly bought item                    
+                    with open("wallet.json", "r") as jsonFile:
+                        wallet = json.load(jsonFile)
+                        money_old = wallet["money"]
+                        money_new = money_old
+                        money_new.append(-items[item]["price"])
+                        wallet["money"] = money_new
 
-                    money.append(-items[item]["price"])
+                    with open("wallet.json", "w") as jsonFile:
+                        json.dump(wallet, jsonFile)
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 4: # Scroll up
@@ -139,7 +149,11 @@ running = True
 while running:
     screen.fill(WHITE)
 
-    # Draw bank account
+    # Get current bank account
+    with open("wallet.json", "r") as wallet:
+        wallet = json.load(wallet)
+        money = wallet["money"]
+    # Draw current bank account
     money_text = font.render("Current Balance: " + str(sum(money)) + "$", True, BLACK)
     money_text_rect = money_text.get_rect()
     money_text_rect.center = (WINDOW_WIDTH//2, 50-scroll_y)

@@ -1,114 +1,114 @@
 {
     "item1": {
-        "name": "car",
-        "description": "Blablabla",
-        "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "name": "watch1",
+        "description": "tbd",
+        "price": 25,
+        "image": "./Assets/watches/watch1.jpg",
+        "image_show": "./Assets/watches/watch1_show.jpg"
     },
     "item2": {
-        "name": "car",
-        "description": "Blla",
+        "name": "watch2",
+        "description": "tbd",
         "price": 30,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/watches/watch2.jpg",
+        "image_show": "./Assets/watches/watch2_show.jpg"
     },
     "item3": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "watch3",
+        "description": "tbd",
         "price": 12,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/watches/watch3.jpg",
+        "image_show": "./Assets/watches/watch3_show.jpg"
     },
     "item4": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "watch4",
+        "description": "tbd",
         "price": 20,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/watches/watch4.jpg",
+        "image_show": "./Assets/watches/watch4_show.jpg"
     },
     "item5": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "car1",
+        "description": "tbd",
         "price": 30,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/cars/car1.jpg",
+        "image_show": "./Assets/cars/car1_show.jpg"
     },
     "item6": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "car2",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/cars/car2.jpg",
+        "image_show": "./Assets/cars/car2_show.jpg"
     },
     "item7": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "car3",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/cars/car3.jpg",
+        "image_show": "./Assets/cars/car3_show.jpg"
     },
     "item8": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "car4",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/cars/car4.jpg",
+        "image_show": "./Assets/cars/car4_show.jpg"
     },
     "item9": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "boat1",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/boats/boat1.jpg",
+        "image_show": "./Assets/boats/boat1_show.jpg"
     },
     "item10": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "boat2",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/boats/boat2.jpg",
+        "image_show": "./Assets/boats/boat2_show.jpg"
     },
     "item11": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "boat3",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/boats/boat3.jpg",
+        "image_show": "./Assets/boats/boat3_show.jpg"
     },
     "item12": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "boat4",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/boats/boat4.jpg",
+        "image_show": "./Assets/boats/boat4_show.jpg"
     },
     "item13": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "art1",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/art/art1.png",
+        "image_show": "./Assets/art/art1_show.png"
     },
     "item14": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "art2",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/art/art2.png",
+        "image_show": "./Assets/art/art2_show.png"
     },
     "item15": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "art3",
+        "description": "tbd",
         "price": 100,
-        "image": "./Assets/cars/item2.jpg",
-        "image_show": "./Assets/cars/item2_show.jpg"
+        "image": "./Assets/art/art3.png",
+        "image_show": "./Assets/art/art3_show.png"
     },
     "item16": {
-        "name": "car",
-        "description": "Blablabla",
+        "name": "art4",
+        "description": "tbd",
         "price": 1,
-        "image": "./Assets/watches/item13.jpg",
-        "image_show": "./Assets/watches/item13_show.jpg"
+        "image": "./Assets/art/art4.png",
+        "image_show": "./Assets/art/art4_show.png"
     }
 }

@@ -11,7 +11,11 @@ screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 screen.fill("white")
 pygame.display.set_caption("Showroom")
-font = pygame.font.SysFont(None, 30)
+font = pygame.font.SysFont("arial", 20)
+
+# prepare error message
+text = font.render('Nothing to see here. First buy things in the shop.', True, "black")
+text_rect = text.get_rect(center=(screen_width // 2, screen_height // 2))
 
 with open("inventory.json", "r") as inventory:
             inventory = json.load(inventory)
@@ -32,58 +36,64 @@ while running:
 
 
     # Arrow right and left
-    arrow_text_left = font.render("<", True, "black")
-    arrow_text_left_rect = arrow_text_left.get_rect()
-    arrow_text_left_rect.center = (30, screen_height/2)
-    screen.blit(arrow_text_left, arrow_text_left_rect)
+    arrow_left = pygame.image.load("./Assets/arrow_left.png")
+    arrow_right = pygame.image.load("./Assets/arrow_right.png")
 
-    arrow_text = font.render(">", True, "black")
-    arrow_text_rect = arrow_text.get_rect()
-    arrow_text_rect.center = (720, screen_height/2)
-    screen.blit(arrow_text, arrow_text_rect)
+    left_button_rect = arrow_left.get_rect()
+    left_button_rect.center = (50, screen_height/2)
+
+    right_button_rect = arrow_right.get_rect()
+    right_button_rect.center = (700, screen_height/2)
+    
+   
 
     # Handle events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
+
+        elif event.type == pygame.MOUSEMOTION:
+            # Check if mouse is hovering over arrow_left
+            if left_button_rect.collidepoint(event.pos):
+                # Draw circle around arrow_left
+                pygame.draw.circle(screen, "black", left_button_rect.center, 20, 2)
+            elif right_button_rect.collidepoint(event.pos):
+                pygame.draw.circle(screen, "black", right_button_rect.center, 20, 2)
+            else: 
+                pygame.draw.circle(screen, "white", left_button_rect.center, 20, 2)
+                pygame.draw.circle(screen, "white", right_button_rect.center, 20, 2)
+
+
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 # Move to the previous image
-                current_image = (current_image - 1) % len(images)
+                if len(images) > 0:
+                    current_image = (current_image - 1) % len(images)
             elif event.key == pygame.K_RIGHT:
                 # Move to the next image
-                current_image = (current_image + 1) % len(images)
+                if len(images) > 0:
+                    current_image = (current_image + 1) % len(images)
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            if arrow_text_left_rect.collidepoint(event.pos):
-                # Move to the previous image
-                current_image = (current_image - 1) % len(images)
-            elif arrow_text_rect.collidepoint(event.pos):
-                # Move to the next image
-                current_image = (current_image + 1) % len(images)
+            if left_button_rect.collidepoint(event.pos):
+                if len(images) > 0:
+                    current_image = (current_image - 1) % len(images)
+            elif right_button_rect.collidepoint(event.pos):
+                if len(images) > 0:
+                    current_image = (current_image + 1) % len(images)
 
     # Draw the current image onto the screen
-    screen.blit(images[current_image], (125, 50))
+    if len(images) > 0:
+        screen.blit(images[current_image], (125, 50))
+    else: 
+        screen.blit(text, text_rect)
 
 
-    
+    screen.blit(arrow_left, left_button_rect)
+    screen.blit(arrow_right, right_button_rect)
 
-    arrows = ["<", ">"]
-    # Hover animation 
-    mouse_pos = pygame.mouse.get_pos()
-    for i, arrow in enumerate(arrows):
-        text = font.render(arrow, True, "black")
-        text_rect = text.get_rect()
-        text_rect.center = (30+i*740, screen_height/2)
-        if text_rect.collidepoint(mouse_pos):
-            # Draw the arrow with border
-            pygame.draw.rect(screen, "black", (text_rect.x - 5, text_rect.y - 2, text_rect.width + 10, text_rect.height + 2 ), 3)
-            screen.blit(text, text_rect)
-        else:
-            # Redraw rect with white border so it "disappears" after hovering away from it 
-            pygame.draw.rect(screen, "white", (text_rect.x - 5, text_rect.y - 5, text_rect.width + 5, text_rect.height + 5), 3)
-            screen.blit(text, text_rect)
+
 
     pygame.display.flip()
 
