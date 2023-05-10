@@ -147,6 +147,7 @@ def spin():
 
     # spin the roulette wheel
     winning_number = random.randint(0, 36)
+    # depending on the number it is displayed in another colour
     if winning_number in red_numbers:
         win_number.config(text=winning_number, bg="red")
     elif winning_number in black_numbers:
@@ -158,11 +159,11 @@ def spin():
     # when the user bets on the colour
     if kind_of_bet == 'red':
         if winning_number in red_numbers:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (2 * bet_amount) # change the current amount
+            display_current_balance.config(text=current_balance) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
     elif kind_of_bet == 'black':
         if winning_number in black_numbers:
             feedback.config(text="Congratulations you won!")
