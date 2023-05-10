@@ -16,11 +16,11 @@ window.geometry("1000x600")
 window.configure(bg="green")
 
 # Add a label to the window
-titel = tk.Label(window, text="Welcome to Roulette!", font=("Arial", 20), bg="green")
+titel = tk.Label(window, text="Welcome to Roulette!", font=("Arial", 20), bg="green") # define how the label should look like
 titel.pack()
 
 # Add an image to the window
-roulette_img = ImageTk.PhotoImage(Image.open("./Assets/Roulette.png"))
+roulette_img = ImageTk.PhotoImage(Image.open("./Assets/Roulette.png")) # select the image
 image_label = Label(image=roulette_img)
 image_label.pack()
 
@@ -85,8 +85,9 @@ display_current_balance.place(x=200, y=450)
 
 # Create a list with valid user inputs
 valid_entries = ['red', 'black', 'even', 'odd', '1to18', '19to36', '1st 12', '2nd 12', '3rd 12', 'top row', 'middle row', 'bottom row']
-valid_entries_numbers =[]
-for i in range(37):
+# Create another list with the valid user inputs, which are numbers
+valid_entries_numbers =[] # the list is empty at first
+for i in range(37): # then all the numbers which are valid are appended to the list
     valid_entries_numbers.append(i)
 
 # Define the group of numbers
@@ -110,13 +111,14 @@ win_number.place(x=140, y=360)
 
 # Define a function which happens, when the spin button is clicked
 def spin():
+    # get the global variables
     global current_balance
     global display_current_balance
 
     # assign the two user inputs
     kind_of_bet = entry1.get()
     bet_amount = entry2.get()
-    bet_amount = int(bet_amount)
+    bet_amount = int(bet_amount) # change the user input to int
     
     # check if user input is a valid kind of bet
     try:
