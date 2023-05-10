@@ -20,7 +20,7 @@ titel = tk.Label(window, text="Welcome to Roulette!", font=("Arial", 20), bg="gr
 titel.pack()
 
 # Add an image to the window
-roulette_img = ImageTk.PhotoImage(Image.open("./Assets/Roulette.png")) # select the image
+roulette_img = ImageTk.PhotoImage(Image.open("./Assets/roulette.png")) # select the image
 image_label = Label(image=roulette_img)
 image_label.pack()
 
