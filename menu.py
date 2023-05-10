@@ -58,7 +58,7 @@ dis_lb = 155
 # Using the GameImg class to create the thunbnails for the different games with the filenames and the y and x coordinates (for details see GameImg class)
 # Lets play titel picture placement
 learning_im = GameImg("./Assets/learning.png", 1.6)
-casino_im = GameImg("./Assets/roulette.png", 2.6)
+casino_im = GameImg("./Assets/roulette_icon.png", 2.6)
 money_im = GameImg("./Assets/money.png", 3.6)
 
 
@@ -120,7 +120,7 @@ l_titel_DB.place(relx=rx_title, y=2*dis+dis_lt, anchor="center")
 
 # Roulette
 def run_roulette():
-    os.system('python main_flappybirds.py')
+    os.system('python roulette.py')
 btn2 = Button(window, text="Roulette", command = run_roulette)
 btn2.place(relx=rx_button1, y=2*dis+dis_lb, anchor=CENTER)
 
