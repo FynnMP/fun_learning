@@ -10,7 +10,7 @@ window = tk.Tk()
 window.title("Roulette")
 
 # Set the window size
-window.geometry("1000x600")
+window.geometry("1000x750")
 
 # Set the window colour
 window.configure(bg="green")
@@ -42,35 +42,35 @@ option1.place(x=350, y=420)
 
 # Add the label that explains the user his options2
 option2 = tk.Label(window, text="(Colour:                  Type in the colour: 'red' or 'black'.)", font=("Arial", 10), bg="green")
-option2.place(x=350, y=435)
+option2.place(x=350, y=445)
 
 # Add the label that explains the user his options3
 option3 = tk.Label(window, text="(Even-odd:             Type in either 'even' or 'odd'.)", font=("Arial", 10), bg="green")
-option3.place(x=350, y=450)
+option3.place(x=350, y=470)
 
 # Add the label that explains the user his options4
 option4 = tk.Label(window, text="(1to18-19to36:       Type in either '1to18' or '19to36'.", font=("Arial", 10), bg="green")
-option4.place(x=350, y=465)
+option4.place(x=350, y=495)
 
 # Add the label that explains the user his options5
 option5 = tk.Label(window, text="(1st 2nd 3rd 12:     Type in either '1st 12', '2nd 12' or '3rd 12'.)", font=("Arial", 10), bg="green")
-option5.place(x=350, y=480)
+option5.place(x=350, y=520)
 
 # Add the label that explains the user his options6
 option6 = tk.Label(window, text="(2 to 1:                   Type in either 'top row', 'middle row' or 'bottom row'.)", font=("Arial", 10), bg="green")
-option6.place(x=350, y=495)
+option6.place(x=350, y=545)
 
 # Add the label that asks the user how much he wants to bet
 how_much = tk.Label(window, text="How much do you want to bet?", font=("Arial", 16), bg="green")
-how_much.place(x=350, y=520)
+how_much.place(x=350, y=570)
 
 # Add a field where the user can give input
 entry2 = tk.Entry(window)
-entry2.place(x=700, y=520)
+entry2.place(x=700, y=570)
 
 # Add a label with feedback to the entry2
 label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="green")
-label_feedback_entry2.place(x=700, y=550)
+label_feedback_entry2.place(x=700, y=600)
 
 # Add a label with the current balance
 text_current_balance = tk.Label(window, text="Current Balance: ", font=("Arial", 16), bg="green")
@@ -99,11 +99,11 @@ bottom_row = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
 
 # Define a feedback label
 feedback = tk.Label(window, text="", font=("Arial", 14), bg="green")
-feedback.place(x=30, y=550)
+feedback.place(x=30, y=600)
 
 # Define a label with the next steps
 next_steps = tk.Label(window, text="", font=("Arial", 10), bg="green")
-next_steps.place(x=30, y=570)
+next_steps.place(x=30, y=640)
 
 # Add a label to display the number
 win_number = tk.Label(window, text="You have not played yet.", font=("Arial", 14), bg="green")
