@@ -257,17 +257,19 @@ def spin():
             display_current_balance.config(text=current_balance)
         else:
             feedback.config(text="You lost!")
-
+            
+    # Tell the user how he can proceed
     next_steps.config(text="If you want to play again, enter your new bet and press 'spin' again.")
 
 # Add a spin-button to the window
 spin_button = tk.Button(window, text="Spin", borderwidth=2, relief=RAISED, highlightthickness=0, highlightcolor="green", command=spin)
 spin_button.place(x=60, y=360)
 
+# define a function that exits the program
 def exit_program():
     window.destroy()
 
-# Add an exit-button to the window
+# Add an exit-button to the window, which uses the function above
 exit_button = tk.Button(window, text="Exit", borderwidth=2, relief=RAISED, highlightthickness=0, highlightcolor="black", command=exit_program)
 exit_button.place(x=940, y=30)
 
