@@ -3,12 +3,12 @@ import ctypes, pygame, sys, random
 ctypes.windll.user32.SetProcessDPIAware()
 
 # Display settings
-DEFAULT_IMAGE_SIZE = (300, 300)
+DEFAULT_IMAGE_SIZE = (150, 150)
 FPS = 120
-HEIGHT = 1000
-WIDTH = 1600
-START_X, START_Y = 0, -300
-X_OFFSET, Y_OFFSET = 20, 0
+HEIGHT = 500
+WIDTH = 800
+START_X, START_Y = 0, -150
+X_OFFSET, Y_OFFSET = 10, 0
 
 # Images
 BG_IMAGE_PATH = 'graphic/slot/bg.png'
@@ -80,9 +80,9 @@ class Reel:
         for idx, item in enumerate(self.shuffled_keys):
             self.symbol_list.add(Symbol(symbols[item], pos, idx))
             pos = list(pos)
-            pos[1] += 300
+            pos[1] += 150
             pos = tuple(pos)
-
+            print(self.shuffled_keys)
     def animate(self, delta_time):
         if self.reel_is_spinning:
             self.delay_time -= (delta_time * 1000)
@@ -97,10 +97,10 @@ class Reel:
 
                 # Iterate through all 5 symbols in reel; truncate; add new random symbol on top of stack
                 for symbol in self.symbol_list:
-                    symbol.rect.bottom += 100
+                    symbol.rect.bottom += 50
 
                     # Correct spacing is dependent on the above addition eventually hitting 1200
-                    if symbol.rect.top == 1200:
+                    if symbol.rect.top == 600:
                         if reel_is_stopping:
                             self.reel_is_spinning = False
                             # self.stop_sound.play()
@@ -108,7 +108,7 @@ class Reel:
                         symbol_idx = symbol.idx
                         symbol.kill()
                         # Spawn random symbol in place of the above
-                        self.symbol_list.add(Symbol(symbols[random.choice(self.shuffled_keys)], ((symbol.x_val), -300), symbol_idx))
+                        self.symbol_list.add(Symbol(symbols[random.choice(self.shuffled_keys)], ((symbol.x_val), -150), symbol_idx))
 
     def start_spin(self, delay_time):
         self.delay_time = delay_time
@@ -136,8 +136,8 @@ class Symbol(pygame.sprite.Sprite):
         self.x_val = self.rect.left
 
         # Used for win animations
-        self.size_x = 300
-        self.size_y = 300
+        self.size_x = 150
+        self.size_y = 150
         self.alpha = 255
         self.fade_out = False
         self.fade_in = False
@@ -145,7 +145,7 @@ class Symbol(pygame.sprite.Sprite):
     def update(self):
         # Slightly increases size of winning symbols
         if self.fade_in:
-            if self.size_x < 320:
+            if self.size_x < 160:
                 self.size_x += 1
                 self.size_y += 1
                 self.image = pygame.transform.scale(self.image, (self.size_x, self.size_y))
@@ -176,11 +176,11 @@ class UI:
 
         # Balance and bet size
         balance_surf = self.font.render("Balance: $" + player_data['balance'], True, TEXT_COLOR, None)
-        x, y = 20, self.display_surface.get_size()[1] - 30
+        x, y = 20, self.display_surface.get_size()[1] - 15
         balance_rect = balance_surf.get_rect(bottomleft = (x, y))
 
         bet_surf = self.bet_font.render("Wager: $" + player_data['bet_size'], True, TEXT_COLOR, None)
-        x = self.display_surface.get_size()[0] - 20
+        x = self.display_surface.get_size()[0] - 10
         bet_rect = bet_surf.get_rect(bottomright = (x, y))
 
         # Draw player data
@@ -193,14 +193,14 @@ class UI:
         if self.player.last_payout:
             last_payout = player_data['last_payout']
             win_surf = self.win_font.render("WIN! $" + last_payout, True, TEXT_COLOR, None)
-            x1 = 800
-            y1 = self.display_surface.get_size()[1] - 60
+            x1 = 400
+            y1 = self.display_surface.get_size()[1] - 30
             win_surf = pygame.transform.rotate(win_surf, self.win_text_angle)
             win_rect = win_surf.get_rect(center = (x1, y1))
             self.display_surface.blit(win_surf, win_rect)
 
     def update(self):
-        pygame.draw.rect(self.display_surface, 'Black', pygame.Rect(0, 900, 1600, 100))
+        pygame.draw.rect(self.display_surface, 'Black', pygame.Rect(0, 450, 800, 50))
         self.display_info()
 
 class Machine:
@@ -271,7 +271,7 @@ class Machine:
             x_topleft, y_topleft = 10, -300
         while self.reel_index < 5:
             if self.reel_index > 0:
-                x_topleft, y_topleft = x_topleft + (300 + X_OFFSET), y_topleft
+                x_topleft, y_topleft = x_topleft + (150 + X_OFFSET), y_topleft
             
             self.reel_list[self.reel_index] = Reel((x_topleft, y_topleft)) # Need to create reel class
             self.reel_index += 1
@@ -409,7 +409,7 @@ class Game:
 
         # Sound
         main_sound = pygame.mixer.Sound('audio/track.mp3')
-        main_sound.play(loops = -1)
+        #main_sound.play(loops = -1)
 
     def run(self):
 
