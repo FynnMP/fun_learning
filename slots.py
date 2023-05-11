@@ -31,7 +31,7 @@ TEXT_COLOR = 'White'
 
 # 4 Symbols for more wins
 symbols = {
-    'diamond': f"{SYM_PATH}/0_diamond.png", 
+    'diamond': f"{SYM_PATH}/0_sg.jpg", 
     'floppy': f"{SYM_PATH}/0_floppy.png",
     'hourglass': f"{SYM_PATH}/0_hourglass.png",
     'hourglass2': f"{SYM_PATH}/0_hourglass.png",
