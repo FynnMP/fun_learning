@@ -1,2 +1,0 @@
-# Special thanks go to notaSWE (https://github.com/notaSWE) and ClearCode (https://www.youtube.com/c/ClearCode)
-# for the amazing guidance, expenations and open source codes

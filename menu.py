@@ -40,7 +40,7 @@ wgeox, wgeoy = 600 , 650
 
 
 # putting the hsg-logo on top left corner
-logo = PhotoImage(file = "./Assets/logo_new.png") # create a photoimage element with the HSG ong file
+logo = PhotoImage(file = "./graphic/menu/logo_new.png") # create a photoimage element with the HSG ong file
 logolbl = Label(window, image = logo) # initiate a label with the image to display on the canvas and position it
 logolbl.place(x=200, y=30, anchor="nw") # position label with the hsg photoimage element
 
@@ -57,9 +57,9 @@ dis_lb = 155
 
 # Using the GameImg class to create the thunbnails for the different games with the filenames and the y and x coordinates (for details see GameImg class)
 # Lets play titel picture placement
-learning_im = GameImg("./Assets/learning.png", 1.6)
-casino_im = GameImg("./Assets/roulette_icon.png", 2.6)
-money_im = GameImg("./Assets/money.png", 3.6)
+learning_im = GameImg("./graphic/menu/learning.png", 1.6)
+casino_im = GameImg("./graphic/menu/roulette_icon.png", 2.6)
+money_im = GameImg("./graphic/menu/money.png", 3.6)
 
 
 # setting style of all widgets
@@ -126,7 +126,7 @@ btn2.place(relx=rx_button1, y=2*dis+dis_lb, anchor=CENTER)
 
 # Slots
 def run_slots():
-    os.system('python main_flappybirds.py')
+    os.system('python slots.py')
 btn2_2 = Button(window, text="Slots", command = run_slots)
 btn2_2.place(relx=rx_button3, y=2*dis+dis_lb, anchor=CENTER)
 

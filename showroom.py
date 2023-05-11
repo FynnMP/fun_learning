@@ -36,8 +36,8 @@ while running:
 
 
     # Arrow right and left
-    arrow_left = pygame.image.load("./Assets/arrow_left.png")
-    arrow_right = pygame.image.load("./Assets/arrow_right.png")
+    arrow_left = pygame.image.load("./graphic/shop/arrow_left.png")
+    arrow_right = pygame.image.load("./graphic/shop/arrow_right.png")
 
     left_button_rect = arrow_left.get_rect()
     left_button_rect.center = (50, screen_height/2)
