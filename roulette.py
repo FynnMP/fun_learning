@@ -17,20 +17,20 @@ window.configure(bg="green")
 
 # Add a label to the window
 titel = tk.Label(window, text="Welcome to Roulette!", font=("Arial", 20), bg="green") # define how the label should look like
-titel.pack()
+titel.pack() # add the label to the window
 
 # Add an image to the window
-roulette_img = ImageTk.PhotoImage(Image.open("./graphic/roulette/roulette.png")) # select the image
-image_label = Label(image=roulette_img)
-image_label.pack()
+roulette_img = ImageTk.PhotoImage(Image.open("./Assets/roulette.png")) # select the image
+image_label = Label(image=roulette_img) # add the image to the label
+image_label.pack() # add the label to the window
 
 # Add the label that asks the user what he wants to bet on
 what_kind_of_bet = tk.Label(window, text="What kind of bet do you want to do?", font=("Arial", 16), bg="green")
-what_kind_of_bet.place(x=350, y=400)
+what_kind_of_bet.place(x=350, y=400) # place the label on the window
 
 # Add a field where the user can give input
 entry1 = tk.Entry(window)
-entry1.place(x=700, y=400)
+entry1.place(x=700, y=400) # place the entry field on the window
 
 # Add a label with feedback to the entry1
 label_feedback_entry1 = tk.Label(window, text="", font=("Arial", 8), bg="green")
@@ -66,7 +66,7 @@ how_much.place(x=350, y=570)
 
 # Add a field where the user can give input
 entry2 = tk.Entry(window)
-entry2.place(x=700, y=570)
+entry2.place(x=700, y=570) # place the entry field on the window
 
 # Add a label with feedback to the entry2
 label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="green")
@@ -90,7 +90,7 @@ valid_entries_numbers =[] # the list is empty at first
 for i in range(37): # then all the numbers which are valid are appended to the list
     valid_entries_numbers.append(i)
 
-# Define the group of numbers
+# Define the group of numbers, which will be important in finding out whether the user won or not
 red_numbers = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
 black_numbers = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
 top_row = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36]
@@ -123,26 +123,26 @@ def spin():
     # check if user input is a valid kind of bet
     try:
         if kind_of_bet in valid_entries or int(kind_of_bet) in valid_entries_numbers:
-            label_feedback_entry1.config(text="Great! - You entered a valid kind of bet.", fg="black", bg="green")
+            label_feedback_entry1.config(text="Great! - You entered a valid kind of bet.", fg="black", bg="green") # tell the user that he entered a valid input
         else:
-            label_feedback_entry1.config(text="Please enter a valid kind of bet.", fg="red", bg="white")
+            label_feedback_entry1.config(text="Please enter a valid kind of bet.", fg="red", bg="white") # tell the user that he has to change his input
             return
     except ValueError:
-        label_feedback_entry1.config(text="Please enter a valid kind of bet.", fg="red", bg="white")
+        label_feedback_entry1.config(text="Please enter a valid kind of bet.", fg="red", bg="white") # tell the user that he has to change his input
         return
 
     # check if user input is a valid amount
     try:
-        if bet_amount > 0:
-            if bet_amount <= current_balance:
-                label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green")
-                current_balance = current_balance - bet_amount
+        if bet_amount > 0: # the bet amount has to be more than zero
+            if bet_amount <= current_balance: # the bet amount can not be higher than his current balance
+                label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
+                current_balance = current_balance - bet_amount # adapt the current balance
                 display_current_balance.config(text=current_balance)
             else:
-                label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white")
+                label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white") # tell the user that he has to change his bet amount
                 return
     except ValueError:
-        label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white")
+        label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white") # tell the user that he has to change his bet amount
         return
 
     # spin the roulette wheel
@@ -263,16 +263,16 @@ def spin():
     next_steps.config(text="If you want to play again, enter your new bet and press 'spin' again.")
 
 # Add a spin-button to the window
-spin_button = tk.Button(window, text="Spin", borderwidth=2, relief=RAISED, highlightthickness=0, highlightcolor="green", command=spin)
-spin_button.place(x=60, y=360)
+spin_button = tk.Button(window, text="Spin", borderwidth=2, relief=RAISED, highlightthickness=0, highlightcolor="green", command=spin) # the button uses the spin function
+spin_button.place(x=60, y=360) # place the button on the window
 
 # define a function that exits the program
 def exit_program():
     window.destroy()
 
 # Add an exit-button to the window, which uses the function above
-exit_button = tk.Button(window, text="Exit", borderwidth=2, relief=RAISED, highlightthickness=0, highlightcolor="black", command=exit_program)
-exit_button.place(x=940, y=30)
+exit_button = tk.Button(window, text="Exit", borderwidth=2, relief=RAISED, highlightthickness=0, highlightcolor="black", command=exit_program) # the button uses the exit_program function
+exit_button.place(x=940, y=30) # place the button on the window
 
 # Start the main event loop
 window.mainloop()
