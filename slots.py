@@ -177,11 +177,11 @@ class UI:
         player_data = self.player.get_data()
 
         # Balance and bet size
-        balance_surf = self.font.render("Balance: $" + player_data['balance'], True, TEXT_COLOR, None)
+        balance_surf = self.font.render("Balance: $" + player_data['balance'], True, TEXT_COLOR, (0, 0, 0, 0))
         x, y = 20, self.display_surface.get_size()[1] - 15
         balance_rect = balance_surf.get_rect(bottomleft = (x, y))
 
-        bet_surf = self.bet_font.render("Wager: $" + player_data['bet_size'], True, TEXT_COLOR, None)
+        bet_surf = self.bet_font.render("Wager: $" + player_data['bet_size'], True, TEXT_COLOR, (0, 0, 0, 0))
         x = self.display_surface.get_size()[0] - 10
         bet_rect = bet_surf.get_rect(bottomright = (x, y))
 
