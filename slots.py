@@ -1,6 +1,6 @@
 import ctypes, pygame, sys, random, json
 # Maintain resolution regardless of Windows scaling settings
-ctypes.windll.user32.SetProcessDPIAware()
+# ctypes.windll.user32.SetProcessDPIAware()
 
 # Display settings
 DEFAULT_IMAGE_SIZE = (150, 150)
