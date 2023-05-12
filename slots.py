@@ -429,7 +429,7 @@ class Game:
                     with open("wallet.json", "w") as jsonFile: 
                         money = []
                         new_balance = self.machine.currPlayer.get_data()
-                        money.append(float(new_balance["balance"]))
+                        money.append(int(round(float(new_balance["balance"]))))
                         wallet = {}
                         wallet["money"] = money
                         json.dump(wallet, jsonFile)
