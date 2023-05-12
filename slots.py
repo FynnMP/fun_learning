@@ -1,4 +1,4 @@
-import ctypes, pygame, sys, random
+import ctypes, pygame, sys, random, json
 # Maintain resolution regardless of Windows scaling settings
 ctypes.windll.user32.SetProcessDPIAware()
 
@@ -43,7 +43,10 @@ symbols = {
 
 class Player():
     def __init__(self):
-        self.balance = 1000.00
+        with open("wallet.json", "r") as wallet:
+            wallet = json.load(wallet)
+            money = wallet["money"]
+        self.balance = sum(money)
         self.bet_size = 10.00
         self.last_payout = 0.00
         self.total_won = 0.00
@@ -205,7 +208,10 @@ class UI:
 class Machine:
     def __init__(self):
         self.display_surface = pygame.display.get_surface()
-        self.machine_balance = 10000.00
+        with open("wallet.json", "r") as wallet:
+            wallet = json.load(wallet)
+            money = wallet["money"]
+        self.machine_balance = sum(money)
         self.reel_index = 0
         self.reel_list = {}
         self.can_toggle = True
@@ -419,6 +425,15 @@ class Game:
             # Handle quit operation
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    # update money to be used in shop etc. 
+                    with open("wallet.json", "w") as jsonFile: 
+                        money = []
+                        new_balance = self.machine.currPlayer.get_data()
+                        money.append(float(new_balance["balance"]))
+                        wallet = {}
+                        wallet["money"] = money
+                        json.dump(wallet, jsonFile)
+
                     pygame.quit()
                     sys.exit()
 
