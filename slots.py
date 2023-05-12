@@ -31,11 +31,11 @@ TEXT_COLOR = 'White'
 
 # 4 Symbols for more wins
 symbols = {
-    'diamond': f"{SYM_PATH}/0_sg.jpg", 
-    'floppy': f"{SYM_PATH}/0_floppy.png",
-    'hourglass': f"{SYM_PATH}/0_hourglass.png",
-    'hourglass2': f"{SYM_PATH}/0_hourglass.png",
-    'telephone': f"{SYM_PATH}/0_telephone.png"
+    'diamond': f"{SYM_PATH}/0_coin.png", 
+    'floppy': f"{SYM_PATH}/0_eth.png",
+    'hourglass': f"{SYM_PATH}/0_sg.png",
+    'hourglass2': f"{SYM_PATH}/0_unisg.png",
+    'telephone': f"{SYM_PATH}/0_swiss.png"
 }
 
 
@@ -82,7 +82,6 @@ class Reel:
             pos = list(pos)
             pos[1] += 150
             pos = tuple(pos)
-            print(self.shuffled_keys)
     def animate(self, delta_time):
         if self.reel_is_spinning:
             self.delay_time -= (delta_time * 1000)
@@ -284,7 +283,7 @@ class Machine:
 
             for reel in self.reel_list:
                 self.reel_list[reel].start_spin(int(reel) * 200)
-                # self.spin_sound.play()
+                #self.spin_sound.play()
                 self.win_animation_ongoing = False
 
     def get_result(self):
@@ -409,7 +408,7 @@ class Game:
 
         # Sound
         main_sound = pygame.mixer.Sound('audio/track.mp3')
-        #main_sound.play(loops = -1)
+        main_sound.play(loops = -1)
 
     def run(self):
 
