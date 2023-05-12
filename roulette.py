@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter as tk
+from tkinter.ttk import *
 from PIL import ImageTk, Image
 import random
 
@@ -15,6 +16,29 @@ window.geometry("1000x750")
 # Set the window colour
 window.configure(bg="green")
 
+# This means that a new window is opened over the "original" one. 
+class NewWindowDescr(Toplevel):
+
+    def __init__(self, master = None, description = None):
+
+        super().__init__(master = window) # The Tkinter (Tk()) element which is the underlying the initiation window 
+        self.title("Help Terminal") # The top level window caption
+        self.geometry("700x300") # Size of the window
+        self.configure(background="darkgrey") # Background color of the window 
+        # Creating different text elements:
+        titel = Label(self, text ="Instructions for Roulette", font = "Helvetica 18 bold", foreground="black", background="darkgrey") # Titel text and all the specifics
+        titel.place(relx = 0.5, rely = 0.1, anchor = CENTER) # Determining the position of the textelement "titel"
+        descr = Label(self, text = description, font = "Helvetica 14", foreground="black", background="darkgrey") # Description text and all the specifics
+        descr.place(relx = 0.5, rely = 0.5, anchor = CENTER) # Determining the position of the textelement "descr"
+
+# setting style of all widgets
+style = Style()
+#style.theme ('aqua', 'clam', 'alt', 'default', 'classic') (used default) --> possibility to select different
+style.theme_use('default')
+# Title of the games and text of the widgets text 
+style.configure("button1.TButton", font="Helvetica 16 bold", background="#9FD0DD", foreground="black", padding=(10, 25, 10, 25)) # Buttons
+style.configure("button2.TButton", font="Helvetica 8 bold", background="#B2B2B2", foreground="black") # Buttons
+
 # Add a label to the window
 titel = tk.Label(window, text="Welcome to Roulette!", font=("Arial", 20), bg="green") # define how the label should look like
 titel.pack() # add the label to the window
@@ -26,62 +50,53 @@ image_label.pack() # add the label to the window
 
 # Add the label that asks the user what he wants to bet on
 what_kind_of_bet = tk.Label(window, text="What kind of bet do you want to do?", font=("Arial", 16), bg="green")
-what_kind_of_bet.place(x=350, y=400) # place the label on the window
+what_kind_of_bet.place(x=350, y=450) # place the label on the window
 
 # Add a field where the user can give input
-entry1 = tk.Entry(window)
-entry1.place(x=700, y=400) # place the entry field on the window
+entry1 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4)
+entry1.place(x=700, y=450) # place the entry field on the window
 
 # Add a label with feedback to the entry1
 label_feedback_entry1 = tk.Label(window, text="", font=("Arial", 8), bg="green")
-label_feedback_entry1.place(x=700, y=430)
+label_feedback_entry1.place(x=700, y=485)
 
-# Add the label that explains the user his options1
-option1 = tk.Label(window, text="(number:                Type in the number.)", font=("Arial", 10), bg="green")
-option1.place(x=350, y=420)
 
-# Add the label that explains the user his options2
-option2 = tk.Label(window, text="(Colour:                  Type in the colour: 'red' or 'black'.)", font=("Arial", 10), bg="green")
-option2.place(x=350, y=445)
 
-# Add the label that explains the user his options3
-option3 = tk.Label(window, text="(Even-odd:             Type in either 'even' or 'odd'.)", font=("Arial", 10), bg="green")
-option3.place(x=350, y=470)
+# Help Button
+btn = Button(window, text="Possible Inputs",style="button2.TButton")
+btn.place(x = 400, y=500, anchor=CENTER)
+btn.bind("<Button>", lambda e: NewWindowDescr(window,
+    "Number: \t \t Type in the number.\n"
+    "Colour: \t \t Type in the colour: 'red' or 'black'.\n"
+    "Even-odd: \t Type in either 'even' or 'odd'.\n"
+    "1to18-19to36: \t Type in either '1to18' or '19to36'.\n"
+    "1st 2nd 3rd 12: \t Type in either '1st 12', '2nd 12' or '3rd 12'.\n"
+    "2 to 1: \t \t Type in either 'top row', 'middle row' or 'bottom row'.\n"
+))
 
-# Add the label that explains the user his options4
-option4 = tk.Label(window, text="(1to18-19to36:       Type in either '1to18' or '19to36'.", font=("Arial", 10), bg="green")
-option4.place(x=350, y=495)
-
-# Add the label that explains the user his options5
-option5 = tk.Label(window, text="(1st 2nd 3rd 12:     Type in either '1st 12', '2nd 12' or '3rd 12'.)", font=("Arial", 10), bg="green")
-option5.place(x=350, y=520)
-
-# Add the label that explains the user his options6
-option6 = tk.Label(window, text="(2 to 1:                   Type in either 'top row', 'middle row' or 'bottom row'.)", font=("Arial", 10), bg="green")
-option6.place(x=350, y=545)
 
 # Add the label that asks the user how much he wants to bet
 how_much = tk.Label(window, text="How much do you want to bet?", font=("Arial", 16), bg="green")
 how_much.place(x=350, y=570)
 
 # Add a field where the user can give input
-entry2 = tk.Entry(window)
+entry2 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4)
 entry2.place(x=700, y=570) # place the entry field on the window
 
 # Add a label with feedback to the entry2
 label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="green")
-label_feedback_entry2.place(x=700, y=600)
-
-# Add a label with the current balance
-text_current_balance = tk.Label(window, text="Current Balance: ", font=("Arial", 16), bg="green")
-text_current_balance.place(x=30, y=450)
+label_feedback_entry2.place(x=700, y=605)
 
 # Add the variable current_balance
 current_balance = 100
 
+# Add a label with the current balance
+text_current_balance = tk.Label(window, text="Current Balance:", font=("Arial", 16), bg="green")
+text_current_balance.place(x=350, y=640)
+
 # Add a label with the actual number of the current balance
-display_current_balance = tk.Label(window, text=current_balance, font=("Arial", 16), bg="green")
-display_current_balance.place(x=200, y=450)
+display_current_balance = tk.Label(window, text="$"+str(current_balance), font=("Arial", 16, "bold"), bg="green")
+display_current_balance.place(x=520, y=640)
 
 # Create a list with valid user inputs
 valid_entries = ['red', 'black', 'even', 'odd', '1to18', '19to36', '1st 12', '2nd 12', '3rd 12', 'top row', 'middle row', 'bottom row']
@@ -107,7 +122,7 @@ next_steps.place(x=30, y=640)
 
 # Add a label to display the number
 win_number = tk.Label(window, text="You have not played yet.", font=("Arial", 14), bg="green")
-win_number.place(x=140, y=360)
+win_number.place(x=90, y=600)
 
 # Define a function which happens, when the spin button is clicked
 def spin():
@@ -118,7 +133,11 @@ def spin():
     # assign the two user inputs
     kind_of_bet = entry1.get()
     bet_amount = entry2.get()
-    bet_amount = int(bet_amount) # change the user input to int
+    try: 
+        bet_amount = int(bet_amount) # change the user input to int
+    except ValueError:
+        label_feedback_entry2.config(text="Please enter a number.", fg="red", bg="white") # tell the user that he has to change his bet amount
+
     
     # check if user input is a valid kind of bet
     try:
@@ -133,17 +152,20 @@ def spin():
 
     # check if user input is a valid amount
     try:
-        if bet_amount > 0: # the bet amount has to be more than zero
-            if bet_amount <= current_balance: # the bet amount can not be higher than his current balance
-                label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
-                current_balance = current_balance - bet_amount # adapt the current balance
-                display_current_balance.config(text=current_balance)
-            else:
-                label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white") # tell the user that he has to change his bet amount
-                return
+        if isinstance(bet_amount, int):
+            if bet_amount > 0: # the bet amount has to be more than zero
+                if bet_amount <= current_balance: # the bet amount can not be higher than his current balance
+                    label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
+                    current_balance = current_balance - bet_amount # adapt the current balance
+                    display_current_balance.config(text=current_balance)
+                else:
+                    label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white") # tell the user that he has to change his bet amount
+                    return
     except ValueError:
-        label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white") # tell the user that he has to change his bet amount
+        label_feedback_entry2.config(text="Not enough money left.", fg="red", bg="white") # tell the user that he has to change his bet amount
         return
+
+   
 
     # spin the roulette wheel
     winning_number = random.randint(0, 36)
@@ -151,20 +173,20 @@ def spin():
     if winning_number in red_numbers:
         win_number.config(text=winning_number, bg="red")
     elif winning_number in black_numbers:
-        win_number.config(text=winning_number, bg="black")
+        win_number.config(text=winning_number, bg="black", fg="white")
     elif winning_number == 0:
         win_number.config(text=winning_number, bg="green")
 
     # determine whether the user has won or not
     # when the user bets on the colour
-    if kind_of_bet == 'red':
+    if kind_of_bet == 'red' and isinstance(bet_amount, int):
         if winning_number in red_numbers:
             feedback.config(text="Congratulations you won!") # tell the user that he won
             current_balance = current_balance + (2 * bet_amount) # change the current amount
             display_current_balance.config(text=current_balance) # display the new current amount
         else:
             feedback.config(text="You lost!") # tell the user that he lost
-    elif kind_of_bet == 'black':
+    elif kind_of_bet == 'black' and isinstance(bet_amount, int):
         if winning_number in black_numbers:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
@@ -173,14 +195,14 @@ def spin():
             feedback.config(text="You lost!")
 
     # when the user bets on even or odd
-    elif kind_of_bet == 'even':
+    elif kind_of_bet == 'even' and isinstance(bet_amount, int):
         if winning_number % 2 == 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
             display_current_balance.config(text=current_balance)
         else:
             feedback.config(text="You lost!")
-    elif kind_of_bet == 'odd':
+    elif kind_of_bet == 'odd' and isinstance(bet_amount, int):
         if winning_number % 2 != 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
@@ -189,14 +211,14 @@ def spin():
             feedback.config(text="You lost!")
 
     # when the user bets on low or high number
-    elif kind_of_bet == '1to18':
+    elif kind_of_bet == '1to18' and isinstance(bet_amount, int):
         if winning_number <= 18 & winning_number != 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
             display_current_balance.config(text=current_balance)
         else:
             feedback.config(text="You lost!")
-    elif kind_of_bet == '19to36':
+    elif kind_of_bet == '19to36' and isinstance(bet_amount, int):
         if winning_number > 18 & winning_number != 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
@@ -205,21 +227,21 @@ def spin():
             feedback.config(text="You lost!")
 
     # when the user bets on a third of the numbers
-    elif kind_of_bet == '1st 12':
+    elif kind_of_bet == '1st 12' and isinstance(bet_amount, int):
         if winning_number <= 12 & winning_number != 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
             display_current_balance.config(text=current_balance)
         else:
             feedback.config(text="You lost!")
-    elif kind_of_bet == '2nd 12':
+    elif kind_of_bet == '2nd 12' and isinstance(bet_amount, int):
         if winning_number > 12 & winning_number <= 24:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
             display_current_balance.config(text=current_balance)
         else:
             feedback.config(text="You lost!")
-    elif kind_of_bet == '3rd 12':
+    elif kind_of_bet == '3rd 12' and isinstance(bet_amount, int):
         if winning_number > 24:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
@@ -228,21 +250,21 @@ def spin():
             feedback.config(text="You lost!")
 
     # when the user bets on a row
-    elif kind_of_bet == 'top row':
+    elif kind_of_bet == 'top row' and isinstance(bet_amount, int):
         if winning_number in top_row:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
             display_current_balance.config(text=current_balance)
         else:
             feedback.config(text="You lost!")
-    elif kind_of_bet == 'middle row':
+    elif kind_of_bet == 'middle row' and isinstance(bet_amount, int):
         if winning_number in middle_row:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
             display_current_balance.config(text=current_balance)
         else:
             feedback.config(text="You lost!")
-    elif kind_of_bet == 'bottom row':
+    elif kind_of_bet == 'bottom row' and isinstance(bet_amount, int):
         if winning_number in bottom_row:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
@@ -252,27 +274,21 @@ def spin():
 
     # when the user bets on a number
     else:
-        if int(kind_of_bet) == winning_number:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (36 * bet_amount)
-            display_current_balance.config(text=current_balance)
-        else:
-            feedback.config(text="You lost!")
+        if isinstance(bet_amount, int):
+            if int(kind_of_bet) == winning_number:
+                feedback.config(text="Congratulations you won!")
+                current_balance = current_balance + (36 * bet_amount)
+                display_current_balance.config(text=current_balance)
+            else:
+                feedback.config(text="You lost!")
             
     # Tell the user how he can proceed
-    next_steps.config(text="If you want to play again, enter your new bet and press 'spin' again.")
+    next_steps.config(text="If you want to play again, \n" 
+                            "enter your new bet and press 'spin' again.")
 
 # Add a spin-button to the window
-spin_button = tk.Button(window, text="Spin", borderwidth=2, relief=RAISED, highlightthickness=0, highlightcolor="green", command=spin) # the button uses the spin function
-spin_button.place(x=60, y=360) # place the button on the window
-
-# define a function that exits the program
-def exit_program():
-    window.destroy()
-
-# Add an exit-button to the window, which uses the function above
-exit_button = tk.Button(window, text="Exit", borderwidth=2, relief=RAISED, highlightthickness=0, highlightcolor="black", command=exit_program) # the button uses the exit_program function
-exit_button.place(x=940, y=30) # place the button on the window
+spin_button = Button(window, text="Spin", style="button1.TButton", command=spin)
+spin_button.place(x=95, y=450) # place the button on the window
 
 # Start the main event loop
 window.mainloop()
