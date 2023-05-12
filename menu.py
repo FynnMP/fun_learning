@@ -102,12 +102,12 @@ l_titel_DB = Label(window, text="Learning")
 l_titel_DB.place(relx=rx_title, y=dis+dis_lt, anchor="center")
 # The description button for Dots and Boxes
 def run_management():
-    os.system('python shop.py')
+    os.system('python memory.py')
 btn1 = Button(window, text="Mangement", command = run_management) # Button element with the name Description
 btn1.place(relx=rx_button1, y=dis+dis_lb, anchor=CENTER) # placing the button
 
 def run_accounting():
-    os.system('python shop.py')
+    os.system('python memory.py')
 # The play button is created and the command to run the game is bound to it
 btn1_3 = Button(window, text="Finance", command = run_accounting)
 # The button is place in the relative section 
