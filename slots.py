@@ -224,12 +224,12 @@ class Machine:
         # Import sounds
         # self.spin_sound = pygame.mixer.Sound('audio/spinclip.mp3')
         # self.spin_sound.set_volume(0.15)
-        # self.win_three = pygame.mixer.Sound('audio/winthree.wav')
-        # self.win_three.set_volume(0.6)
-        # self.win_four = pygame.mixer.Sound('audio/winfour.wav')
-        # self.win_four.set_volume(0.7)
-        # self.win_five = pygame.mixer.Sound('audio/winfive.wav')
-        # self.win_five.set_volume(0.8)
+        self.win_three = pygame.mixer.Sound('audio/win.wav')
+        self.win_three.set_volume(0.6)
+        self.win_four = pygame.mixer.Sound('audio/win.wav')
+        self.win_four.set_volume(0.7)
+        self.win_five = pygame.mixer.Sound('audio/win.wav')
+        self.win_five.set_volume(0.8)
 
     def cooldowns(self):
         # Only lets player spin if all reels are NOT spinning
@@ -245,7 +245,7 @@ class Machine:
             if self.check_wins(self.spin_result):
                 self.win_data = self.check_wins(self.spin_result)
                 # Play the win sound
-                # self.play_win_sound(self.win_data)
+                self.play_win_sound(self.win_data)
                 self.pay_player(self.win_data, self.currPlayer)
                 self.win_animation_ongoing = True
                 self.ui.win_text_angle = random.randint(-4, 4)
@@ -408,6 +408,7 @@ class Game:
 
         # Sound
         main_sound = pygame.mixer.Sound('audio/track.mp3')
+        main_sound.set_volume(0.2)
         main_sound.play(loops = -1)
 
     def run(self):
