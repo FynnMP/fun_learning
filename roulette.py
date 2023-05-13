@@ -4,7 +4,7 @@ from tkinter.ttk import *
 from PIL import ImageTk, Image
 import random
 from loading_animation import CircularProgressbar
-import time
+import json
 
 # Create the roulette window
 window = tk.Tk()
@@ -90,7 +90,9 @@ label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="green")
 label_feedback_entry2.place(x=700, y=535)
 
 # Add the variable current_balance
-current_balance = 100
+with open("wallet.json", "r") as wallet:
+    wallet = json.load(wallet)
+    current_balance = sum(wallet["money"])
 
 # Add a label with the current balance
 text_current_balance = tk.Label(window, text="Current Balance:", font=("Arial", 16), bg="green")
@@ -139,6 +141,7 @@ def spin_button_handler():
     bet_amount = entry2.get()
     try: 
         bet_amount = int(bet_amount) # change the user input to int
+        label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
     except ValueError:
         label_feedback_entry2.config(text="Please enter a number.", fg="red", bg="white") # tell the user that he has to change his bet amount
 
@@ -160,10 +163,8 @@ def spin_button_handler():
             if bet_amount > 0: # the bet amount has to be more than zero
                 if bet_amount <= current_balance: # the bet amount can not be higher than his current balance
                     label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
-                    current_balance = current_balance - bet_amount # adapt the current balance
-                    display_current_balance.config(text="$"+str(current_balance))
                 else:
-                    label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white") # tell the user that he has to change his bet amount
+                    label_feedback_entry2.config(text="You don't have enough coins for this bet.", fg="red", bg="white") # tell the user that he has to change his bet amount
                     return
     except ValueError:
         label_feedback_entry2.config(text="Not enough money left.", fg="red", bg="white")
@@ -174,6 +175,8 @@ def spin_button_handler():
             # Disable the button
             spin_button.config(state=tk.DISABLED)
             stop_results()
+            current_balance = current_balance - bet_amount # adapt the current balance
+            display_current_balance.config(text="$"+str(current_balance))
             loading_animation()
             window.after(1870, lambda: stop_loading_animation() or spin() or enable_spin_button())
 
@@ -212,38 +215,10 @@ def spin():
 
     # assign the two user inputs
     kind_of_bet = entry1.get()
-    bet_amount = entry2.get()
-    try: 
-        bet_amount = int(bet_amount) # change the user input to int
-    except ValueError:
-        label_feedback_entry2.config(text="Please enter a number.", fg="red", bg="white") # tell the user that he has to change his bet amount
+    bet_amount = int(entry2.get())
 
     
-    # check if user input is a valid kind of bet
-    try:
-        if kind_of_bet in valid_entries or int(kind_of_bet) in valid_entries_numbers:
-            label_feedback_entry1.config(text="Great! - You entered a valid kind of bet.", fg="black", bg="green") # tell the user that he entered a valid input
-        else:
-            label_feedback_entry1.config(text="Please enter a valid kind of bet.", fg="red", bg="white") # tell the user that he has to change his input
-            return
-    except ValueError:
-        label_feedback_entry1.config(text="Please enter a valid kind of bet.", fg="red", bg="white") # tell the user that he has to change his input
-        return
-
-    # check if user input is a valid amount
-    try:
-        if isinstance(bet_amount, int):
-            if bet_amount > 0: # the bet amount has to be more than zero
-                if bet_amount <= current_balance: # the bet amount can not be higher than his current balance
-                    label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
-                    current_balance = current_balance - bet_amount # adapt the current balance
-                    display_current_balance.config(text="$"+str(current_balance))
-                else:
-                    label_feedback_entry2.config(text="You don't have enough coins for this bet.", fg="red", bg="white") # tell the user that he has to change his bet amount
-                    return
-    except ValueError:
-        label_feedback_entry2.config(text="Not enough money left.", fg="red", bg="white") # tell the user that he has to change his bet amount
-        return
+ 
 
    
 
@@ -374,5 +349,21 @@ def stop_results():
 spin_button = Button(window, text="Spin", style="button1.TButton", command=spin_button_handler)
 spin_button.place(x=95, y=420) # place the button on the window
 
+
+# Save current balance to json when closing
+def on_closing():
+    # update money to be used in shop etc. 
+    with open("wallet.json", "w") as jsonFile: 
+        money = []
+        new_balance = current_balance
+        money.append(int(round(float(new_balance))))
+        wallet = {}
+        wallet["money"] = money
+        json.dump(wallet, jsonFile)
+
+    window.destroy()
+
+
 # Start the main event loop
+window.protocol("WM_DELETE_WINDOW", on_closing)
 window.mainloop()
