@@ -3,6 +3,8 @@ import tkinter as tk
 from tkinter.ttk import *
 from PIL import ImageTk, Image
 import random
+from loading_animation import CircularProgressbar
+import time
 
 # Create the roulette window
 window = tk.Tk()
@@ -11,7 +13,7 @@ window = tk.Tk()
 window.title("Roulette")
 
 # Set the window size
-window.geometry("1000x750")
+window.geometry("1000x600")
 
 # Set the window colour
 window.configure(bg="green")
@@ -50,21 +52,21 @@ image_label.pack() # add the label to the window
 
 # Add the label that asks the user what he wants to bet on
 what_kind_of_bet = tk.Label(window, text="What kind of bet do you want to do?", font=("Arial", 16), bg="green")
-what_kind_of_bet.place(x=350, y=450) # place the label on the window
+what_kind_of_bet.place(x=350, y=410) # place the label on the window
 
 # Add a field where the user can give input
 entry1 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4)
-entry1.place(x=700, y=450) # place the entry field on the window
+entry1.place(x=700, y=410) # place the entry field on the window
 
 # Add a label with feedback to the entry1
 label_feedback_entry1 = tk.Label(window, text="", font=("Arial", 8), bg="green")
-label_feedback_entry1.place(x=700, y=485)
+label_feedback_entry1.place(x=700, y=445)
 
 
 
 # Help Button
 btn = Button(window, text="Possible Inputs",style="button2.TButton")
-btn.place(x = 400, y=500, anchor=CENTER)
+btn.place(x = 400, y=460, anchor=CENTER)
 btn.bind("<Button>", lambda e: NewWindowDescr(window,
     "Number: \t \t Type in the number.\n"
     "Colour: \t \t Type in the colour: 'red' or 'black'.\n"
@@ -77,26 +79,26 @@ btn.bind("<Button>", lambda e: NewWindowDescr(window,
 
 # Add the label that asks the user how much he wants to bet
 how_much = tk.Label(window, text="How much do you want to bet?", font=("Arial", 16), bg="green")
-how_much.place(x=350, y=570)
+how_much.place(x=350, y=500)
 
 # Add a field where the user can give input
 entry2 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4)
-entry2.place(x=700, y=570) # place the entry field on the window
+entry2.place(x=700, y=500) # place the entry field on the window
 
 # Add a label with feedback to the entry2
 label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="green")
-label_feedback_entry2.place(x=700, y=605)
+label_feedback_entry2.place(x=700, y=535)
 
 # Add the variable current_balance
 current_balance = 100
 
 # Add a label with the current balance
 text_current_balance = tk.Label(window, text="Current Balance:", font=("Arial", 16), bg="green")
-text_current_balance.place(x=350, y=640)
+text_current_balance.place(x=350, y=560)
 
 # Add a label with the actual number of the current balance
 display_current_balance = tk.Label(window, text="$"+str(current_balance), font=("Arial", 16, "bold"), bg="green")
-display_current_balance.place(x=520, y=640)
+display_current_balance.place(x=520, y=560)
 
 # Create a list with valid user inputs
 valid_entries = ['red', 'black', 'even', 'odd', '1to18', '19to36', '1st 12', '2nd 12', '3rd 12', 'top row', 'middle row', 'bottom row']
@@ -113,16 +115,94 @@ middle_row = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]
 bottom_row = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
 
 # Define a feedback label
-feedback = tk.Label(window, text="", font=("Arial", 14), bg="green")
-feedback.place(x=30, y=600)
+feedback = tk.Label(window, text="", font=("Arial", 14, "bold"), bg="green")
+feedback.place(x=160, y=550, anchor="center")
 
 # Define a label with the next steps
-next_steps = tk.Label(window, text="", font=("Arial", 10), bg="green")
-next_steps.place(x=30, y=640)
+next_steps = tk.Label(window, text="", font=("Arial", 8), bg="green")
+next_steps.place(x=160, y=580, anchor="center")
 
 # Add a label to display the number
-win_number = tk.Label(window, text="You have not played yet.", font=("Arial", 14), bg="green")
-win_number.place(x=90, y=600)
+win_number = tk.Label(window, text="", font=("Arial", 14), bg="green")
+win_number.place(x=160, y=520, anchor="center")
+
+
+# Define a function to handle the timing of loading and result after the button is clicked
+# Define a function to handle the timing of loading and result after the button is clicked
+def spin_button_handler():
+
+    global current_balance
+    global display_current_balance
+
+    # assign the two user inputs
+    kind_of_bet = entry1.get()
+    bet_amount = entry2.get()
+    try: 
+        bet_amount = int(bet_amount) # change the user input to int
+    except ValueError:
+        label_feedback_entry2.config(text="Please enter a number.", fg="red", bg="white") # tell the user that he has to change his bet amount
+
+    
+    # check if user input is a valid kind of bet
+    try:
+        if kind_of_bet in valid_entries or int(kind_of_bet) in valid_entries_numbers:
+            label_feedback_entry1.config(text="Great! - You entered a valid kind of bet.", fg="black", bg="green") # tell the user that he entered a valid input
+        else:
+            label_feedback_entry1.config(text="Please enter a valid kind of bet.", fg="red", bg="white") # tell the user that he has to change his input
+            return
+    except ValueError:
+        label_feedback_entry1.config(text="Please enter a valid kind of bet.", fg="red", bg="white") # tell the user that he has to change his input
+        return
+
+    # check if user input is a valid amount
+    try:
+        if isinstance(bet_amount, int):
+            if bet_amount > 0: # the bet amount has to be more than zero
+                if bet_amount <= current_balance: # the bet amount can not be higher than his current balance
+                    label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
+                    current_balance = current_balance - bet_amount # adapt the current balance
+                    display_current_balance.config(text="$"+str(current_balance))
+                else:
+                    label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white") # tell the user that he has to change his bet amount
+                    return
+    except ValueError:
+        label_feedback_entry2.config(text="Not enough money left.", fg="red", bg="white")
+        return
+
+    try:
+        if isinstance(bet_amount, int) and bet_amount>0 and bet_amount<=current_balance and (kind_of_bet in valid_entries or int(kind_of_bet) in valid_entries_numbers):
+            # Disable the button
+            spin_button.config(state=tk.DISABLED)
+            stop_results()
+            loading_animation()
+            window.after(1870, lambda: stop_loading_animation() or spin() or enable_spin_button())
+
+    except:
+        None
+    # Enable the button again
+    
+
+
+def enable_spin_button():
+    spin_button.config(state=tk.NORMAL)
+
+# create the initial canvas object
+myCanvas = None
+
+# Define a function to create the loading animation
+def loading_animation():
+    global myCanvas
+    # create new canvas for loading animation
+    myCanvas = tk.Canvas(window, bg="green", height=90, width=90, highlightthickness=0)
+    myCanvas.place(x=160, y=550, anchor="center")
+    progressbar = CircularProgressbar(myCanvas, 0, 0, 90, 90, 15)
+    progressbar.start()
+
+# Define a function to stop the loading animation
+def stop_loading_animation():
+    global myCanvas
+    myCanvas.destroy()
+
 
 # Define a function which happens, when the spin button is clicked
 def spin():
@@ -157,9 +237,9 @@ def spin():
                 if bet_amount <= current_balance: # the bet amount can not be higher than his current balance
                     label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
                     current_balance = current_balance - bet_amount # adapt the current balance
-                    display_current_balance.config(text=current_balance)
+                    display_current_balance.config(text="$"+str(current_balance))
                 else:
-                    label_feedback_entry2.config(text="You don't have enough coins for this bet. Please change the amount.", fg="red", bg="white") # tell the user that he has to change his bet amount
+                    label_feedback_entry2.config(text="You don't have enough coins for this bet.", fg="red", bg="white") # tell the user that he has to change his bet amount
                     return
     except ValueError:
         label_feedback_entry2.config(text="Not enough money left.", fg="red", bg="white") # tell the user that he has to change his bet amount
@@ -183,14 +263,14 @@ def spin():
         if winning_number in red_numbers:
             feedback.config(text="Congratulations you won!") # tell the user that he won
             current_balance = current_balance + (2 * bet_amount) # change the current amount
-            display_current_balance.config(text=current_balance) # display the new current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
             feedback.config(text="You lost!") # tell the user that he lost
     elif kind_of_bet == 'black' and isinstance(bet_amount, int):
         if winning_number in black_numbers:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
 
@@ -199,14 +279,14 @@ def spin():
         if winning_number % 2 == 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str("$"+str(current_balance)))
         else:
             feedback.config(text="You lost!")
     elif kind_of_bet == 'odd' and isinstance(bet_amount, int):
         if winning_number % 2 != 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
 
@@ -215,14 +295,14 @@ def spin():
         if winning_number <= 18 & winning_number != 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
     elif kind_of_bet == '19to36' and isinstance(bet_amount, int):
         if winning_number > 18 & winning_number != 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
 
@@ -231,21 +311,21 @@ def spin():
         if winning_number <= 12 & winning_number != 0:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
     elif kind_of_bet == '2nd 12' and isinstance(bet_amount, int):
         if winning_number > 12 & winning_number <= 24:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
     elif kind_of_bet == '3rd 12' and isinstance(bet_amount, int):
         if winning_number > 24:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
 
@@ -254,21 +334,21 @@ def spin():
         if winning_number in top_row:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
     elif kind_of_bet == 'middle row' and isinstance(bet_amount, int):
         if winning_number in middle_row:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
     elif kind_of_bet == 'bottom row' and isinstance(bet_amount, int):
         if winning_number in bottom_row:
             feedback.config(text="Congratulations you won!")
             current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text=current_balance)
+            display_current_balance.config(text="$"+str(current_balance))
         else:
             feedback.config(text="You lost!")
 
@@ -278,7 +358,7 @@ def spin():
             if int(kind_of_bet) == winning_number:
                 feedback.config(text="Congratulations you won!")
                 current_balance = current_balance + (36 * bet_amount)
-                display_current_balance.config(text=current_balance)
+                display_current_balance.config(text="$"+str(current_balance))
             else:
                 feedback.config(text="You lost!")
             
@@ -286,9 +366,13 @@ def spin():
     next_steps.config(text="If you want to play again, \n" 
                             "enter your new bet and press 'spin' again.")
 
+def stop_results():
+    feedback.config(text="")
+    next_steps.config(text="")
+
 # Add a spin-button to the window
-spin_button = Button(window, text="Spin", style="button1.TButton", command=spin)
-spin_button.place(x=95, y=450) # place the button on the window
+spin_button = Button(window, text="Spin", style="button1.TButton", command=spin_button_handler)
+spin_button.place(x=95, y=420) # place the button on the window
 
 # Start the main event loop
 window.mainloop()
