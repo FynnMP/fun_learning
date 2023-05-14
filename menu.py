@@ -1,7 +1,7 @@
 # first the necessary libraries to create a GUI are downloaded
 from tkinter import *
 from tkinter.ttk import *
-import subprocess
+import subprocess, sys
 import json
 
 # A class used to place the images/ snippeds of the games on the screen.
@@ -102,12 +102,24 @@ l_titel_DB = Label(window, text="Learning")
 l_titel_DB.place(relx=rx_title, y=dis+dis_lt, anchor="center")
 # The description button for Dots and Boxes
 def run_management():
-    subprocess.run(['python', 'memory.py'], check=True)
+    python_executable = sys.executable 
+    script_file = "management.py"
+    if sys.platform.startswith("win"):  # Windows
+        command = [python_executable, script_file]
+    else:  # macOS/Linux
+        command = [python_executable, "-m", "python", script_file]
+    subprocess.run(command, check=True)
 btn1 = Button(window, text="Mangement", command = run_management) # Button element with the name Description
 btn1.place(relx=rx_button1, y=dis+dis_lb, anchor=CENTER) # placing the button
 
 def run_accounting():
-    subprocess.run(['python', 'memory.py'], check=True)
+    python_executable = sys.executable 
+    script_file = "accounting.py"
+    if sys.platform.startswith("win"):  # Windows
+        command = [python_executable, script_file]
+    else:  # macOS/Linux
+        command = [python_executable, "-m", "python", script_file]
+    subprocess.run(command, check=True)
 # The play button is created and the command to run the game is bound to it
 btn1_3 = Button(window, text="Finance", command = run_accounting)
 # The button is place in the relative section 
@@ -120,13 +132,25 @@ l_titel_DB.place(relx=rx_title, y=2*dis+dis_lt, anchor="center")
 
 # Roulette
 def run_roulette():
-    subprocess.run(['python', 'roulette.py'], check=True)
+    python_executable = sys.executable 
+    script_file = "roulette.py"
+    if sys.platform.startswith("win"):  # Windows
+        command = [python_executable, script_file]
+    else:  # macOS/Linux
+        command = [python_executable, "-m", "python", script_file]
+    subprocess.run(command, check=True)
 btn2 = Button(window, text="Roulette", command = run_roulette)
 btn2.place(relx=rx_button1, y=2*dis+dis_lb, anchor=CENTER)
 
 # Slots
 def run_slots():
-    subprocess.run(['python', 'slots.py'], check=True)
+    python_executable = sys.executable 
+    script_file = "slots.py"
+    if sys.platform.startswith("win"):  # Windows
+        command = [python_executable, script_file]
+    else:  # macOS/Linux
+        command = [python_executable, "-m", "python", script_file]
+    subprocess.run(command, check=True)
 btn2_2 = Button(window, text="Slots", command = run_slots)
 btn2_2.place(relx=rx_button3, y=2*dis+dis_lb, anchor=CENTER)
 
@@ -138,13 +162,25 @@ l_titel_DB.place(relx=rx_title, y=3*dis+dis_lt, anchor="center")
 
 # SHOP
 def run_shop():
-    subprocess.run(['python', 'shop.py'], check=True)
+    python_executable = sys.executable 
+    script_file = "shop.py"
+    if sys.platform.startswith("win"):  # Windows
+        command = [python_executable, script_file]
+    else:  # macOS/Linux
+        command = [python_executable, "-m", "python", script_file]
+    subprocess.run(command, check=True)
 btn3 = Button(window, text="Shop", command = run_shop)
 btn3.place(relx=rx_button1, y=3*dis+dis_lb, anchor=CENTER)
 
 # SHOWROOM
 def run_showroom():
-    subprocess.run(['python', 'showroom.py'], check=True)
+    python_executable = sys.executable 
+    script_file = "showroom.py"
+    if sys.platform.startswith("win"):  # Windows
+        command = [python_executable, script_file]
+    else:  # macOS/Linux
+        command = [python_executable, "-m", "python", script_file]
+    subprocess.run(command, check=True)
 btn3_2 = Button(window, text="Showroom", command = run_showroom)
 btn3_2.place(relx=rx_button3, y=3*dis+dis_lb, anchor=CENTER)
 
