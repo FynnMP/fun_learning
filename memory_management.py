@@ -5,10 +5,10 @@ class Tile(pygame.sprite.Sprite):
     def __init__(self, filename, x, y):
         super().__init__()
 
-        self.name = filename.split('.')[0]
+        self.name = filename.split('_')[0]
 
 
-        self.original_image = self.load_image('graphic/memory/content/' + filename)
+        self.original_image = self.load_image('graphic/memory/content_management/' + filename)
 
         self.back_image = pygame.image.load('graphic/memory/0_unisg.png').convert_alpha()
         self.back_image = pygame.transform.scale(self.back_image, (80, 80))
@@ -35,13 +35,13 @@ class Tile(pygame.sprite.Sprite):
 class Game():
     def __init__(self):
         self.score = 0
-        self.content_font = pygame.font.Font('graphic/memory/fonts/Little Alien.ttf', 12)
+        self.content_font = pygame.font.Font('graphic/memory/fonts/font.ttf', 12)
 
         self.level = 1
         self.level_complete = False
 
         # aliens
-        self.all_aliens = [f for f in os.listdir('graphic/memory/content') if os.path.isfile(os.path.join('graphic/memory/content', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
+        self.all_aliens = [f for f in os.listdir('graphic/memory/content_management') if os.path.isfile(os.path.join('graphic/memory/content_management', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
 
 
         self.img_width, self.img_height = (80, 80)
@@ -88,7 +88,7 @@ class Game():
             for event in event_list:
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     for tile in self.tiles_group:
-                        if tile.rect.collidepoint(event.pos):
+                        if tile.rect.collidepoint(event.pos) and not tile.shown:
                             self.flipped.append(tile.name)
                             tile.show()
                             if len(self.flipped) == 2:
@@ -97,10 +97,12 @@ class Game():
                                     self.decrease_score()  # Verringere den Score
                                 else:
                                     self.flipped = []
+                                    self.increase_score()  # Erhöhe den Score
+
+                                    
                                     for tile in self.tiles_group:
                                         if tile.shown:
                                             self.level_complete = True
-                                            self.increase_score()  # Erhöhe den Score
                                         else:
                                             self.level_complete = False
                                             break
@@ -135,35 +137,44 @@ class Game():
             tile = Tile(aliens[i], x, y)
             self.tiles_group.add(tile)
 
-    def select_random_aliens(self, level):
-        aliens = random.sample(self.all_aliens, (self.level + self.level + 2))
-        aliens_copy = aliens.copy()
-        aliens.extend(aliens_copy)
+    def select_random_aliens(self, level): 
+        aliens = []
+        aliens_filter = random.sample(range(0,24,2), (self.level + self.level + 2))
+        for i in aliens_filter:
+            aliens.append(self.all_aliens[i])
+            aliens.append(self.all_aliens[i+1])
         random.shuffle(aliens)
         return aliens
+
+
 
     def user_input(self, event_list):
         for event in event_list:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and self.level_complete:
                     self.level += 1
-                    if self.level >= 6:
+                    if self.level >= 5:
                         self.level = 1
                     self.generate_level(self.level)
 
     def draw(self):
         screen.fill(BLACK)
 
+        # fonts
+        title_font = pygame.font.Font('graphic/memory/fonts/font.ttf', 20)
+        content_font = pygame.font.Font('graphic/memory/fonts/font.ttf', 12)
+        default_font = pygame.font.SysFont(None, 20)
+        default_font2 = pygame.font.SysFont(None, 30)
+
+
         # draw background image
         screen.blit(self.background_image, (0, 0))
 
-        score_text = self.content_font.render("Current balance: "+ str(self.score), True, BLACK)
+        score_text = default_font.render("Current balance: $"+ str(self.score), True, BLACK)
         score_rect = score_text.get_rect(topright=(WINDOW_WIDTH - 30, 20))
         screen.blit(score_text, score_rect)
 
-        # fonts
-        title_font = pygame.font.Font('graphic/memory/fonts/Little Alien.ttf', 20)
-        content_font = pygame.font.Font('graphic/memory/fonts/Little Alien.ttf', 12)
+
 
         # text
         title_text = title_font.render('Memory Game', True, BLACK)
@@ -175,11 +186,11 @@ class Game():
         info_text = content_font.render('Find the matching answer to the questions.', True, BLACK)
         info_rect = info_text.get_rect(midtop=(WINDOW_WIDTH // 2, 120))
 
-        if not self.level == 5:
-            next_text = title_font.render('Level complete. Press Space for next level', True, WHITE)
+        if not self.level == 4:
+            next_text = default_font2.render('Level complete! Press space for next level.', True, WHITE)
         else:
-            next_text = title_font.render('Congrats. You Won. Press Space to play again', True, WHITE)
-        next_rect = next_text.get_rect(midbottom=(WINDOW_WIDTH // 2, WINDOW_HEIGHT - 40))
+            next_text = default_font2.render('Congrats! You Won! Press space to play again.', True, WHITE)
+        next_rect = next_text.get_rect(midbottom=(WINDOW_WIDTH // 2, WINDOW_HEIGHT - 20))
 
         screen.blit(title_text, title_rect)
         screen.blit(level_text, level_rect)
