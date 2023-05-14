@@ -8,9 +8,9 @@ class Tile(pygame.sprite.Sprite):
         self.name = filename.split('.')[0]
 
 
-        self.original_image = self.load_image('images/aliens/' + filename)
+        self.original_image = self.load_image('graphic/Memory/Aliens/' + filename)
 
-        self.back_image = pygame.image.load('images/Unknown.png').convert_alpha()
+        self.back_image = pygame.image.load('graphic/Memory/Unknown.png').convert_alpha()
         self.back_image = pygame.transform.scale(self.back_image, (128, 128))
 
         self.image = self.back_image
@@ -35,13 +35,13 @@ class Tile(pygame.sprite.Sprite):
 class Game():
     def __init__(self):
         self.score = 0
-        self.content_font = pygame.font.Font('fonts/Little Alien.ttf', 24)
+        self.content_font = pygame.font.Font('Memory/fonts/Little Alien.ttf', 24)
 
         self.level = 1
         self.level_complete = False
 
         # aliens
-        self.all_aliens = [f for f in os.listdir('images/aliens') if os.path.isfile(os.path.join('images/aliens', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
+        self.all_aliens = [f for f in os.listdir('graphic/Memory/Aliens') if os.path.isfile(os.path.join('graphic/Memory/Aliens', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
 
 
         self.img_width, self.img_height = (128, 128)
@@ -62,18 +62,18 @@ class Game():
         self.generate_level(self.level)
 
         # initialize image
-        self.background_image = pygame.image.load('images/Casino_Memory.png').convert_alpha()
+        self.background_image = pygame.image.load('graphic/Memory/Casino_Memory.png').convert_alpha()
         self.background_image = pygame.transform.scale(self.background_image, (1400, 1000))
 
         # initialize music
         self.is_music_playing = True
-        self.sound_on = pygame.image.load('images/speaker.png').convert_alpha()
-        self.sound_off = pygame.image.load('images/mute.png').convert_alpha()
+        self.sound_on = pygame.image.load('graphic/Memory/speaker.png').convert_alpha()
+        self.sound_off = pygame.image.load('graphic/Memory/mute.png').convert_alpha()
         self.music_toggle = self.sound_on
         self.music_toggle_rect = self.music_toggle.get_rect(topright=(WINDOW_WIDTH - 10, 10))
 
         # load music
-        pygame.mixer.music.load('sounds/brightside.mp3')
+        pygame.mixer.music.load('audio/brightside.mp3')
         pygame.mixer.music.set_volume(.3)
         pygame.mixer.music.play()
 
@@ -185,8 +185,8 @@ class Game():
         screen.blit(score_text, score_rect)
 
         # fonts
-        title_font = pygame.font.Font('fonts/Little Alien.ttf', 44)
-        content_font = pygame.font.Font('fonts/Little Alien.ttf', 24)
+        title_font = pygame.font.Font('Memory/fonts/Little Alien.ttf', 44)
+        content_font = pygame.font.Font('Memory/fonts/Little Alien.ttf', 24)
 
         # text
         title_text = title_font.render('Memory Game', True, WHITE)
@@ -216,11 +216,6 @@ class Game():
 
         if self.level_complete:
             screen.blit(next_text, next_rect)
-
-    def get_video(self):
-        self.cap = cv2.VideoCapture('video/earth.mp4')
-        self.success, self.img = self.cap.read()
-        self.shape = self.img.shape[1::-1]
 
 pygame.init()
 
