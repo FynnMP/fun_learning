@@ -47,7 +47,7 @@ class Player():
             wallet = json.load(wallet)
             money = wallet["money"]
         self.balance = sum(money)
-        self.bet_size = 10.00
+        self.bet_size = 10
         self.last_payout = 0.00
         self.total_won = 0.00
         self.total_wager = 0.00
@@ -181,9 +181,11 @@ class UI:
         x, y = 20, self.display_surface.get_size()[1] - 15
         balance_rect = balance_surf.get_rect(bottomleft = (x, y))
 
-        bet_surf = self.bet_font.render("Wager: $" + player_data['bet_size'], True, TEXT_COLOR, (0, 0, 0, 0))
+        bet_surf = self.bet_font.render("Bet: $" + player_data['bet_size'], True, TEXT_COLOR, (0, 0, 0, 0))
         x = self.display_surface.get_size()[0] - 10
         bet_rect = bet_surf.get_rect(bottomright = (x, y))
+
+
 
         # Draw player data
         pygame.draw.rect(self.display_surface, False, balance_rect)
@@ -259,8 +261,8 @@ class Machine:
     def input(self):
         keys = pygame.key.get_pressed()
 
-        # Checks for space key, ability to toggle spin, and balance to cover bet size
-        if keys[pygame.K_SPACE] and self.can_toggle and self.currPlayer.balance >= self.currPlayer.bet_size:
+        # Checks for space key or enter key, ability to toggle spin, and balance to cover bet size
+        if (keys[pygame.K_SPACE] or keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER]) and self.can_toggle and self.currPlayer.balance >= self.currPlayer.bet_size:
             self.toggle_spinning()
             self.spin_time = pygame.time.get_ticks()
             self.currPlayer.place_bet()

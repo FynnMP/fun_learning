@@ -8,7 +8,7 @@ class Tile(pygame.sprite.Sprite):
         self.name = filename.split('_')[0]
 
 
-        self.original_image = self.load_image('graphic/memory/content_management/' + filename)
+        self.original_image = self.load_image('graphic/memory/content_accounting/' + filename)
 
         self.back_image = pygame.image.load('graphic/memory/0_unisg.png').convert_alpha()
         self.back_image = pygame.transform.scale(self.back_image, (80, 80))
@@ -44,7 +44,7 @@ class Game():
         self.level_complete = False
 
         # aliens
-        self.all_aliens = [f for f in os.listdir('graphic/memory/content_management') if os.path.isfile(os.path.join('graphic/memory/content_management', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
+        self.all_aliens = [f for f in os.listdir('graphic/memory/content_accounting') if os.path.isfile(os.path.join('graphic/memory/content_accounting', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
 
 
         self.img_width, self.img_height = (80, 80)
