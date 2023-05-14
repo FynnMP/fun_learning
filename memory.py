@@ -185,8 +185,8 @@ class Game():
         screen.blit(score_text, score_rect)
 
         # fonts
-        title_font = pygame.font.Font('Memory/fonts/Little Alien.ttf', 44)
-        content_font = pygame.font.Font('Memory/fonts/Little Alien.ttf', 24)
+        title_font = pygame.font.Font('graphic/Memory/fonts/Little Alien.ttf', 44)
+        content_font = pygame.font.Font('graphic/Memory/fonts/Little Alien.ttf', 24)
 
         # text
         title_text = title_font.render('Memory Game', True, WHITE)
