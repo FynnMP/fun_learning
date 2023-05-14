@@ -35,7 +35,7 @@ class Tile(pygame.sprite.Sprite):
 class Game():
     def __init__(self):
         self.score = 0
-        self.content_font = pygame.font.Font('Memory/fonts/Little Alien.ttf', 24)
+        self.content_font = pygame.font.Font('graphic/Memory/fonts/Little Alien.ttf', 24)
 
         self.level = 1
         self.level_complete = False
