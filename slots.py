@@ -47,7 +47,7 @@ class Player():
             wallet = json.load(wallet)
             money = wallet["money"]
         self.balance = sum(money)
-        self.bet_size = 10
+        self.bet_size = 10.00
         self.last_payout = 0.00
         self.total_won = 0.00
         self.total_wager = 0.00
@@ -165,6 +165,7 @@ class UI:
         self.display_surface = pygame.display.get_surface()
         try:
             self.font, self.bet_font = pygame.font.SysFont(None, 30), pygame.font.SysFont(None, 30)
+            self.small_font = pygame.font.SysFont(None, 15, italic=True)
             self.win_font = pygame.font.SysFont(None, 30)
         except:
             print("Error loading font!")
@@ -181,17 +182,28 @@ class UI:
         x, y = 20, self.display_surface.get_size()[1] - 15
         balance_rect = balance_surf.get_rect(bottomleft = (x, y))
 
+        instructions_play = self.small_font.render("Press space or enter to spin.", True, TEXT_COLOR, (0, 0, 0, 0))
+        x, y = 20, self.display_surface.get_size()[1] - 15
+        instructions_play_rect = instructions_play.get_rect(bottomleft = (x, y+10))
+
         bet_surf = self.bet_font.render("Bet: $" + player_data['bet_size'], True, TEXT_COLOR, (0, 0, 0, 0))
         x = self.display_surface.get_size()[0] - 10
         bet_rect = bet_surf.get_rect(bottomright = (x, y))
 
-
+        instructions_bet = self.small_font.render("Increase/Decrease with arrow keys.", True, TEXT_COLOR, (0, 0, 0, 0))
+        x = self.display_surface.get_size()[0] - 10
+        instructions_bet_rect = instructions_bet.get_rect(bottomright = (x, y+10))
 
         # Draw player data
         pygame.draw.rect(self.display_surface, False, balance_rect)
         pygame.draw.rect(self.display_surface, False, bet_rect)
+        pygame.draw.rect(self.display_surface, False, instructions_play_rect)
+        pygame.draw.rect(self.display_surface, False, instructions_bet_rect)
+
         self.display_surface.blit(balance_surf, balance_rect)
         self.display_surface.blit(bet_surf, bet_rect)
+        self.display_surface.blit(instructions_play, instructions_play_rect)
+        self.display_surface.blit(instructions_bet, instructions_bet_rect)
 
         # Print last win if applicable
         if self.player.last_payout:
@@ -268,6 +280,17 @@ class Machine:
             self.currPlayer.place_bet()
             self.machine_balance += self.currPlayer.bet_size
             self.currPlayer.last_payout = None
+
+        
+        if keys[pygame.K_UP] and self.can_toggle and self.currPlayer.balance > self.currPlayer.bet_size:
+            self.currPlayer.bet_size += 1
+            pygame.time.wait(200)
+        if keys[pygame.K_DOWN] and self.can_toggle and self.currPlayer.bet_size >0:
+            self.currPlayer.bet_size -= 1
+            pygame.time.wait(200)
+
+
+
             
     def draw_reels(self, delta_time):
         for reel in self.reel_list:
