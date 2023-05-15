@@ -1,3 +1,7 @@
+# this python script executes the shop of our LearnXCasino platform, it uses the money earned from the learning parts or gained in the casino
+# once an item is bought it can be seen in the showroom in a higher resolution
+
+# import needed modules
 import pygame
 import json
 
@@ -16,22 +20,24 @@ WINDOW_HEIGHT = 600
 screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption('Shop')
 
-# Define font
+# Define fonts used in the shop
 font = pygame.font.SysFont(None, 30)
 font2 = pygame.font.SysFont(None, 20)
 
-# Define items
+# Define items 
+# importing it from the shop_items.json file 
 with open('shop_items.json', 'r+') as shop_items:
     items = json.load(shop_items)
 
 
 # Define inventory 
+# importing it from the inventory.json file 
 with open("inventory.json", "r") as inventory:
     inventory = json.load(inventory)
 
 
-
 # Define wallet 
+# importing it from the wallet.json file 
 with open("wallet.json", "r") as wallet:
     wallet = json.load(wallet)
     money = wallet["money"]
@@ -53,8 +59,10 @@ def draw_items(scroll_y):
         col = i % 4
         item_x = x + col * (item_width + margin)
         item_y = y + row * row_height
+
         # Create new surface with desired item size
         item_surface = pygame.Surface((item_width, item_height+50))
+        
         # Blit item image onto new surface
         item_img = pygame.image.load(items[item]['image'])
         item_image = pygame.transform.scale(item_img, (item_width, item_height))

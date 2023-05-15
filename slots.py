@@ -1,3 +1,7 @@
+# Special thanks and credits to notaSWE (https://github.com/notaSWE/pygameslots) for providing the general code framework for this casino game
+
+
+
 import ctypes, pygame, sys, random, json
 # Maintain resolution regardless of Windows scaling settings
 # ctypes.windll.user32.SetProcessDPIAware()
@@ -19,17 +23,7 @@ SYM_PATH = 'graphic/slot/symbols'
 # Text
 TEXT_COLOR = 'White'
 
-
-# 5 Symbols for demo
-# symbols = {
-#     'diamond': f"{SYM_PATH}/0_diamond.png", 
-#     'floppy': f"{SYM_PATH}/0_floppy.png",
-#     'hourglass': f"{SYM_PATH}/0_hourglass.png",
-#     'seven': f"{SYM_PATH}/0_seven.png",
-#     'telephone': f"{SYM_PATH}/0_telephone.png"
-# }
-
-# 4 Symbols for more wins
+# 5 Symbols
 symbols = {
     'diamond': f"{SYM_PATH}/0_coin.png", 
     'floppy': f"{SYM_PATH}/0_eth.png",

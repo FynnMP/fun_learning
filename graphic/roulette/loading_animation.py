@@ -1,3 +1,6 @@
+# special thanks and credtis to stackoverflow user martineau (https://stackoverflow.com/questions/41943823/circular-progress-bar-using-tkinter)
+# for providing the general code framework for the loading animation
+
 import tkinter as tk
 import tkinter.font as tkFont
 import tkinter.ttk as ttk
