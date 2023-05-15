@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter.ttk import *
 from PIL import ImageTk, Image
 import random
-from loading_animation import CircularProgressbar
+from graphic.roulette.loading_animation import CircularProgressbar
 import json
 
 # Create the roulette window
@@ -16,7 +16,7 @@ window.title("Roulette")
 window.geometry("1000x600")
 
 # Set the window colour
-window.configure(bg="green")
+window.configure(bg="#018137")
 
 # This means that a new window is opened over the "original" one. 
 class NewWindowDescr(Toplevel):
@@ -42,7 +42,7 @@ style.configure("button1.TButton", font="Helvetica 16 bold", background="#9FD0DD
 style.configure("button2.TButton", font="Helvetica 8 bold", background="#B2B2B2", foreground="black") # Buttons
 
 # Add a label to the window
-titel = tk.Label(window, text="Welcome to Roulette!", font=("Arial", 20), bg="green") # define how the label should look like
+titel = tk.Label(window, text="Welcome to Roulette!", font=("Arial", 20), bg="#018137") # define how the label should look like
 titel.pack() # add the label to the window
 
 # Add an image to the window
@@ -51,7 +51,7 @@ image_label = Label(image=roulette_img) # add the image to the label
 image_label.pack() # add the label to the window
 
 # Add the label that asks the user what he wants to bet on
-what_kind_of_bet = tk.Label(window, text="What kind of bet do you want to do?", font=("Arial", 16), bg="green")
+what_kind_of_bet = tk.Label(window, text="What kind of bet do you want to do?", font=("Arial", 16), bg="#018137")
 what_kind_of_bet.place(x=350, y=410) # place the label on the window
 
 # Add a field where the user can give input
@@ -59,7 +59,7 @@ entry1 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth
 entry1.place(x=700, y=410) # place the entry field on the window
 
 # Add a label with feedback to the entry1
-label_feedback_entry1 = tk.Label(window, text="", font=("Arial", 8), bg="green")
+label_feedback_entry1 = tk.Label(window, text="", font=("Arial", 8), bg="#018137")
 label_feedback_entry1.place(x=700, y=445)
 
 
@@ -78,7 +78,7 @@ btn.bind("<Button>", lambda e: NewWindowDescr(window,
 
 
 # Add the label that asks the user how much he wants to bet
-how_much = tk.Label(window, text="How much do you want to bet?", font=("Arial", 16), bg="green")
+how_much = tk.Label(window, text="How much do you want to bet?", font=("Arial", 16), bg="#018137")
 how_much.place(x=350, y=500)
 
 # Add a field where the user can give input
@@ -86,7 +86,7 @@ entry2 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth
 entry2.place(x=700, y=500) # place the entry field on the window
 
 # Add a label with feedback to the entry2
-label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="green")
+label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="#018137")
 label_feedback_entry2.place(x=700, y=535)
 
 # Add the variable current_balance
@@ -95,11 +95,11 @@ with open("wallet.json", "r") as wallet:
     current_balance = sum(wallet["money"])
 
 # Add a label with the current balance
-text_current_balance = tk.Label(window, text="Current Balance:", font=("Arial", 16), bg="green")
+text_current_balance = tk.Label(window, text="Current Balance:", font=("Arial", 16), bg="#018137")
 text_current_balance.place(x=350, y=560)
 
 # Add a label with the actual number of the current balance
-display_current_balance = tk.Label(window, text="$"+str(current_balance), font=("Arial", 16, "bold"), bg="green")
+display_current_balance = tk.Label(window, text="$"+str(current_balance), font=("Arial", 16, "bold"), bg="#018137")
 display_current_balance.place(x=520, y=560)
 
 # Create a list with valid user inputs
@@ -117,15 +117,15 @@ middle_row = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]
 bottom_row = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
 
 # Define a feedback label
-feedback = tk.Label(window, text="", font=("Arial", 14, "bold"), bg="green")
+feedback = tk.Label(window, text="", font=("Arial", 14, "bold"), bg="#018137")
 feedback.place(x=160, y=550, anchor="center")
 
 # Define a label with the next steps
-next_steps = tk.Label(window, text="", font=("Arial", 8), bg="green")
+next_steps = tk.Label(window, text="", font=("Arial", 8), bg="#018137")
 next_steps.place(x=160, y=580, anchor="center")
 
 # Add a label to display the number
-win_number = tk.Label(window, text="", font=("Arial", 14), bg="green")
+win_number = tk.Label(window, text="", font=("Arial", 14), bg="#018137")
 win_number.place(x=160, y=520, anchor="center")
 
 
@@ -141,7 +141,7 @@ def spin_button_handler():
     bet_amount = entry2.get()
     try: 
         bet_amount = int(bet_amount) # change the user input to int
-        label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
+        label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="#018137") # tell the user that he entered a valid input
     except ValueError:
         label_feedback_entry2.config(text="Please enter a number.", fg="red", bg="white") # tell the user that he has to change his bet amount
 
@@ -149,7 +149,7 @@ def spin_button_handler():
     # check if user input is a valid kind of bet
     try:
         if kind_of_bet in valid_entries or int(kind_of_bet) in valid_entries_numbers:
-            label_feedback_entry1.config(text="Great! - You entered a valid kind of bet.", fg="black", bg="green") # tell the user that he entered a valid input
+            label_feedback_entry1.config(text="Great! - You entered a valid kind of bet.", fg="black", bg="#018137") # tell the user that he entered a valid input
         else:
             label_feedback_entry1.config(text="Please enter a valid kind of bet.", fg="red", bg="white") # tell the user that he has to change his input
             return
@@ -162,7 +162,7 @@ def spin_button_handler():
         if isinstance(bet_amount, int):
             if bet_amount > 0: # the bet amount has to be more than zero
                 if bet_amount <= current_balance: # the bet amount can not be higher than his current balance
-                    label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="green") # tell the user that he entered a valid input
+                    label_feedback_entry2.config(text="Great! - You entered a valid amount.", fg="black", bg="#018137") # tell the user that he entered a valid input
                 else:
                     label_feedback_entry2.config(text="You don't have enough coins for this bet.", fg="red", bg="white") # tell the user that he has to change his bet amount
                     return
@@ -196,7 +196,7 @@ myCanvas = None
 def loading_animation():
     global myCanvas
     # create new canvas for loading animation
-    myCanvas = tk.Canvas(window, bg="green", height=90, width=90, highlightthickness=0)
+    myCanvas = tk.Canvas(window, bg="#018137", height=90, width=90, highlightthickness=0)
     myCanvas.place(x=160, y=550, anchor="center")
     progressbar = CircularProgressbar(myCanvas, 0, 0, 90, 90, 15)
     progressbar.start()
@@ -230,7 +230,7 @@ def spin():
     elif winning_number in black_numbers:
         win_number.config(text=winning_number, bg="black", fg="white")
     elif winning_number == 0:
-        win_number.config(text=winning_number, bg="green")
+        win_number.config(text=winning_number, bg="#018137")
 
     # determine whether the user has won or not
     # when the user bets on the colour
