@@ -51,22 +51,22 @@ image_label = Label(image=roulette_img) # add the image to the label
 image_label.pack() # add the label to the window
 
 # Add the label that asks the user what he wants to bet on
-what_kind_of_bet = tk.Label(window, text="What kind of bet do you want to do?", font=("Arial", 16), bg="#018137")
+what_kind_of_bet = tk.Label(window, text="What kind of bet do you want to do?", font=("Arial", 16), bg="#018137") # define how the label should look
 what_kind_of_bet.place(x=350, y=410) # place the label on the window
 
 # Add a field where the user can give input
-entry1 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4)
+entry1 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4) # define how the label should look
 entry1.place(x=700, y=410) # place the entry field on the window
 
 # Add a label with feedback to the entry1
-label_feedback_entry1 = tk.Label(window, text="", font=("Arial", 8), bg="#018137")
-label_feedback_entry1.place(x=700, y=445)
+label_feedback_entry1 = tk.Label(window, text="", font=("Arial", 8), bg="#018137") # define how the label should look
+label_feedback_entry1.place(x=700, y=445) # place the label on the window
 
 
 
 # Help Button
 btn = Button(window, text="Possible Inputs",style="button2.TButton")
-btn.place(x = 400, y=460, anchor=CENTER)
+btn.place(x = 400, y=460, anchor=CENTER) # place the button on the window
 btn.bind("<Button>", lambda e: NewWindowDescr(window,
     "Number: \t \t Type in the number.\n"
     "Colour: \t \t Type in the colour: 'red' or 'black'.\n"
@@ -78,16 +78,16 @@ btn.bind("<Button>", lambda e: NewWindowDescr(window,
 
 
 # Add the label that asks the user how much he wants to bet
-how_much = tk.Label(window, text="How much do you want to bet?", font=("Arial", 16), bg="#018137")
-how_much.place(x=350, y=500)
+how_much = tk.Label(window, text="How much do you want to bet?", font=("Arial", 16), bg="#018137") # define how the label should look like
+how_much.place(x=350, y=500) # place the label on the windwo
 
 # Add a field where the user can give input
-entry2 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4)
+entry2 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4) # define how the entry field should look like
 entry2.place(x=700, y=500) # place the entry field on the window
 
 # Add a label with feedback to the entry2
-label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="#018137")
-label_feedback_entry2.place(x=700, y=535)
+label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="#018137") # define how the entry field should look like
+label_feedback_entry2.place(x=700, y=535) # place the second entry field on the window
 
 # Add the variable current_balance
 with open("wallet.json", "r") as wallet:
@@ -96,11 +96,11 @@ with open("wallet.json", "r") as wallet:
 
 # Add a label with the current balance
 text_current_balance = tk.Label(window, text="Current Balance:", font=("Arial", 16), bg="#018137")
-text_current_balance.place(x=350, y=560)
+text_current_balance.place(x=350, y=560) # place the label on the window
 
 # Add a label with the actual number of the current balance
 display_current_balance = tk.Label(window, text="$"+str(current_balance), font=("Arial", 16, "bold"), bg="#018137")
-display_current_balance.place(x=520, y=560)
+display_current_balance.place(x=520, y=560) # place the label on the window
 
 # Create a list with valid user inputs
 valid_entries = ['red', 'black', 'even', 'odd', '1to18', '19to36', '1st 12', '2nd 12', '3rd 12', 'top row', 'middle row', 'bottom row']
@@ -117,19 +117,18 @@ middle_row = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]
 bottom_row = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]
 
 # Define a feedback label
-feedback = tk.Label(window, text="", font=("Arial", 14, "bold"), bg="#018137")
-feedback.place(x=160, y=550, anchor="center")
+feedback = tk.Label(window, text="", font=("Arial", 14, "bold"), bg="#018137") # define how the label should look like
+feedback.place(x=160, y=550, anchor="center") # place the label on the window
 
 # Define a label with the next steps
-next_steps = tk.Label(window, text="", font=("Arial", 8), bg="#018137")
-next_steps.place(x=160, y=580, anchor="center")
+next_steps = tk.Label(window, text="", font=("Arial", 8), bg="#018137") # define how the label should look like
+next_steps.place(x=160, y=580, anchor="center") # place the label on the window
 
 # Add a label to display the number
-win_number = tk.Label(window, text="", font=("Arial", 14), bg="#018137")
-win_number.place(x=160, y=520, anchor="center")
+win_number = tk.Label(window, text="", font=("Arial", 14), bg="#018137") # define how the label should look like
+win_number.place(x=160, y=520, anchor="center") # place the label on the window
 
 
-# Define a function to handle the timing of loading and result after the button is clicked
 # Define a function to handle the timing of loading and result after the button is clicked
 def spin_button_handler():
 
@@ -243,99 +242,99 @@ def spin():
             feedback.config(text="You lost!") # tell the user that he lost
     elif kind_of_bet == 'black' and isinstance(bet_amount, int):
         if winning_number in black_numbers:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (2 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
 
     # when the user bets on even or odd
     elif kind_of_bet == 'even' and isinstance(bet_amount, int):
         if winning_number % 2 == 0:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text="$"+str("$"+str(current_balance)))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (2 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str("$"+str(current_balance))) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
     elif kind_of_bet == 'odd' and isinstance(bet_amount, int):
         if winning_number % 2 != 0:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (2 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
 
     # when the user bets on low or high number
     elif kind_of_bet == '1to18' and isinstance(bet_amount, int):
         if winning_number <= 18 & winning_number != 0:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (2 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
     elif kind_of_bet == '19to36' and isinstance(bet_amount, int):
         if winning_number > 18 & winning_number != 0:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (2 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (2 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
 
     # when the user bets on a third of the numbers
     elif kind_of_bet == '1st 12' and isinstance(bet_amount, int):
         if winning_number <= 12 & winning_number != 0:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (3 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
     elif kind_of_bet == '2nd 12' and isinstance(bet_amount, int):
         if winning_number > 12 & winning_number <= 24:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (3 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
     elif kind_of_bet == '3rd 12' and isinstance(bet_amount, int):
         if winning_number > 24:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (3 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
 
     # when the user bets on a row
     elif kind_of_bet == 'top row' and isinstance(bet_amount, int):
         if winning_number in top_row:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (3 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
     elif kind_of_bet == 'middle row' and isinstance(bet_amount, int):
         if winning_number in middle_row:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (3 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
     elif kind_of_bet == 'bottom row' and isinstance(bet_amount, int):
         if winning_number in bottom_row:
-            feedback.config(text="Congratulations you won!")
-            current_balance = current_balance + (3 * bet_amount)
-            display_current_balance.config(text="$"+str(current_balance))
+            feedback.config(text="Congratulations you won!") # tell the user that he won
+            current_balance = current_balance + (3 * bet_amount) # change the current amount
+            display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
         else:
-            feedback.config(text="You lost!")
+            feedback.config(text="You lost!") # tell the user that he lost
 
     # when the user bets on a number
     else:
         if isinstance(bet_amount, int):
             if int(kind_of_bet) == winning_number:
-                feedback.config(text="Congratulations you won!")
-                current_balance = current_balance + (36 * bet_amount)
-                display_current_balance.config(text="$"+str(current_balance))
+                feedback.config(text="Congratulations you won!") # tell the user that he won
+                current_balance = current_balance + (36 * bet_amount) # change the current amount
+                display_current_balance.config(text="$"+str(current_balance)) # display the new current amount
             else:
-                feedback.config(text="You lost!")
+                feedback.config(text="You lost!") # tell the user that he lost
             
     # Tell the user how he can proceed
     next_steps.config(text="If you want to play again, \n" 
@@ -346,7 +345,7 @@ def stop_results():
     next_steps.config(text="")
 
 # Add a spin-button to the window
-spin_button = Button(window, text="Spin", style="button1.TButton", command=spin_button_handler)
+spin_button = Button(window, text="Spin", style="button1.TButton", command=spin_button_handler) # define how the button should look like
 spin_button.place(x=95, y=420) # place the button on the window
 
 
