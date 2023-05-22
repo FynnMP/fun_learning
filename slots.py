@@ -1,29 +1,39 @@
 # Special thanks and credits to notaSWE (https://github.com/notaSWE/pygameslots) for providing the general code framework for this casino game
 
 
-
+# Importing modules to work with Windows, game development, systemspecific parameters and functions, random number generation, and JSON
 import ctypes, pygame, sys, random, json
 # Maintain resolution regardless of Windows scaling settings
 # ctypes.windll.user32.SetProcessDPIAware()
 
 # Display settings
+#Specifying the default image size
 DEFAULT_IMAGE_SIZE = (150, 150)
+#Specifying frames per second
 FPS = 120
+#Specifying height and width of the display window
 HEIGHT = 500
 WIDTH = 800
+#Specifying the starting coordinates for the slot machine grid
 START_X, START_Y = 0, -150
+#Specifying the offsets for positioning the symbols
 X_OFFSET, Y_OFFSET = 10, 0
 
-# Images
+# The four line code below specify the file paths for different images used in the slot machine
+# The background image
 BG_IMAGE_PATH = 'graphic/slot/bg.png'
+#The image for gridlines
 GRID_IMAGE_PATH = 'graphic/slot/gridline.png'
+#Indices of the playable area
 GAME_INDICES = [1, 2, 3] # 0 and 4 are outside of play area
+#Directory path for the symbol images
 SYM_PATH = 'graphic/slot/symbols'
 
-# Text
+# Displaying the text color in the game
 TEXT_COLOR = 'White'
 
-# 5 Symbols
+# The code below defines a directionary called "symbols"
+# Symbol names are mapped to their corresponding file paths
 symbols = {
     'diamond': f"{SYM_PATH}/0_coin.png", 
     'floppy': f"{SYM_PATH}/0_eth.png",
