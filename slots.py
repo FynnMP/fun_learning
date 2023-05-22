@@ -143,122 +143,164 @@ class Reel:
                         self.symbol_list.add(Symbol(symbols[random.choice(self.shuffled_keys)], ((symbol.x_val), -150), symbol_idx))
 #A new code named "start_spin" is defined within the class which 
 #takes the parameter "delay_time". 
+#The variables within the method control the timing of the reel spin animation
     def start_spin(self, delay_time):
         self.delay_time = delay_time
         self.spin_time = 1000 + delay_time
+#The reel has started spinning
         self.reel_is_spinning = True
 
+# A method called "reel_spin_result" is defined
     def reel_spin_result(self):
         # Get and return text representation of symbols in a given reel
         spin_symbols = []
+# the reel_spin_result method iterated through the list "GAME_INDICES"
+#The defined symbols are appended to the spin_symbols list. The list is then reversed
+# and and returned
         for i in GAME_INDICES:
             spin_symbols.append(self.symbol_list.sprites()[i].sym_type)
         return spin_symbols[::-1]
 
+#A new class called "Symbol" is defined
 class Symbol(pygame.sprite.Sprite):
+# The method __init__ initializes the insatnce variable of the "Symbols"
     def __init__(self, pathToFile, pos, idx):
         super().__init__()
 
         # Friendly name
         self.sym_type = pathToFile.split('/')[3].split('.')[0]
-
+#"pos" and "idx" values are assigned to the instance variables "self.pos" and "self.idx"
         self.pos = pos
         self.idx = idx
+        #Loading image file specified with pathToFile using "pygame.image.load"
         self.image = pygame.image.load(pathToFile).convert_alpha()
+        #this code results in the rectangle being assigned to self.rect after the 
+        #topleft corner of the rectangle is set to the given position
         self.rect = self.image.get_rect(topleft = pos)
+        #The left position of the rectangle is assigned to the variable self.x_val
         self.x_val = self.rect.left
 
         # Used for win animations
-        self.size_x = 150
-        self.size_y = 150
-        self.alpha = 255
+        self.size_x = 150 #size
+        self.size_y = 150  #size
+        self.alpha = 255 #transparency level of the symbol
+        # "self.fade_out" and "self.fade_in" indicate that the symbols should not be fade out
+        # or in during win animations 
         self.fade_out = False
         self.fade_in = False
-
+    #A new method "update" is created to update 
     def update(self):
-        # Slightly increases size of winning symbols
+        # Slightly increases size of winning symbols the state of the symbols
         if self.fade_in:
             if self.size_x < 160:
                 self.size_x += 1
                 self.size_y += 1
                 self.image = pygame.transform.scale(self.image, (self.size_x, self.size_y))
         
-        # Fades out non-winning symbols
+        # Fades out non-winning symbols if the previuos condition is not met
         elif not self.fade_in and self.fade_out:
+            #value of alpha (transparency) is decresed by seven if alpha is lower than 115
             if self.alpha > 115:
                 self.alpha -= 7
                 self.image.set_alpha(self.alpha)
 
-
+# An new class called "UI" is defined and the object palyer is assigned to self.player
+#
 class UI:
     def __init__(self, player):
         self.player = player
+        #self.display_surface represents the display surface where the UI will be drawn
         self.display_surface = pygame.display.get_surface()
+        #The code attempts to load different fonts
         try:
             self.font, self.bet_font = pygame.font.SysFont(None, 30), pygame.font.SysFont(None, 30)
             self.small_font = pygame.font.SysFont(None, 15, italic=True)
             self.win_font = pygame.font.SysFont(None, 30)
+        #If loads can't be loaded the message below will be printed and the program is terminated 
         except:
             print("Error loading font!")
             print(f"Currently, the UI_FONT variable is set to {UI_FONT}")
             print("Does the file exist?")
             quit()
+        #The angle at which will be displayed is set
         self.win_text_angle = random.randint(-4, 4)
-
+    # An new method called "display_info" is created through which player related
+    #information are displayed on the screen 
     def display_info(self):
         player_data = self.player.get_data()
 
-        # Balance and bet size
+        # Surface for rendering the player's balance is created by display_info
         balance_surf = self.font.render("Balance: $" + player_data['balance'], True, TEXT_COLOR, (0, 0, 0, 0))
         x, y = 20, self.display_surface.get_size()[1] - 15
         balance_rect = balance_surf.get_rect(bottomleft = (x, y))
-
+        
+        # Surface for instruction for playing is created by display_info
         instructions_play = self.small_font.render("Press space or enter to spin.", True, TEXT_COLOR, (0, 0, 0, 0))
         x, y = 20, self.display_surface.get_size()[1] - 15
         instructions_play_rect = instructions_play.get_rect(bottomleft = (x, y+10))
 
+        # Surface for the bet size is created by display_info
         bet_surf = self.bet_font.render("Bet: $" + player_data['bet_size'], True, TEXT_COLOR, (0, 0, 0, 0))
         x = self.display_surface.get_size()[0] - 10
         bet_rect = bet_surf.get_rect(bottomright = (x, y))
 
+        # Surface for instructions for adjusting the bet is created by display_info
         instructions_bet = self.small_font.render("Increase/Decrease with arrow keys.", True, TEXT_COLOR, (0, 0, 0, 0))
         x = self.display_surface.get_size()[0] - 10
         instructions_bet_rect = instructions_bet.get_rect(bottomright = (x, y+10))
 
         # Draw player data
+        #Drawing rectangles on the "display_surface" using "pygame.draw.rect"
+        #Color "False" means that the rectangle are transparent
         pygame.draw.rect(self.display_surface, False, balance_rect)
         pygame.draw.rect(self.display_surface, False, bet_rect)
         pygame.draw.rect(self.display_surface, False, instructions_play_rect)
         pygame.draw.rect(self.display_surface, False, instructions_bet_rect)
 
+        #the blit function is used isdraw the surface, "balance_surf", "bet_surf",
+        # "instructions_play" and "instructions_bet"
+        #Surfaces are drawn based on their corresponding rectangle position
         self.display_surface.blit(balance_surf, balance_rect)
         self.display_surface.blit(bet_surf, bet_rect)
         self.display_surface.blit(instructions_play, instructions_play_rect)
         self.display_surface.blit(instructions_bet, instructions_bet_rect)
 
         # Print last win if applicable
+        # The if statement checks if the player last_payout is not "None". If it is not "None"
+        # then the player won when spinning last time
         if self.player.last_payout:
             last_payout = player_data['last_payout']
+            #A text with the winning amount is assigned to win_surf
             win_surf = self.win_font.render("WIN! $" + last_payout, True, TEXT_COLOR, None)
+           # Rotation of the surface
+           #Rectangle for rotated surface is obtained where "x1 is set to 400" and y is calculated 
+           # based on the size of the display surface
             x1 = 400
             y1 = self.display_surface.get_size()[1] - 30
             win_surf = pygame.transform.rotate(win_surf, self.win_text_angle)
             win_rect = win_surf.get_rect(center = (x1, y1))
             self.display_surface.blit(win_surf, win_rect)
-
+    # The method "update" is used to update the surface. The new dimensions and positions are defined
     def update(self):
         pygame.draw.rect(self.display_surface, 'Black', pygame.Rect(0, 450, 800, 50))
         self.display_info()
-
+#A new code called "Machine" is defined
 class Machine:
     def __init__(self):
+        #the display surface obtained from pygame.display.get_surface() is assigned 
+        #self.dispaly_surface
         self.display_surface = pygame.display.get_surface()
+        #Opening the file "wallet.json" and loading its content as a JSON object
         with open("wallet.json", "r") as wallet:
             wallet = json.load(wallet)
+            #Assigning "money" of the JSON object to money
             money = wallet["money"]
+        #The total machine balance is calculated by summing the money amount in the list of "money"
+        #The amount is then assigned to "self.machine_balance"
         self.machine_balance = sum(money)
-        self.reel_index = 0
-        self.reel_list = {}
+        self.reel_index = 0 #current index
+        self.reel_list = {} #Directionary for storing the reel objects
+        # Several aspects of the machine are controlled
         self.can_toggle = True
         self.spinning = False
         self.can_animate = False
