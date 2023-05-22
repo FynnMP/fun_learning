@@ -44,69 +44,95 @@ symbols = {
 
 
 
-
+# Definying a class called "Player"
 class Player():
+#__init__ method initializes the instance variables of the object "Player". 
+# This constructor reads the conetnts of the "wallet.json" file   
     def __init__(self):
         with open("wallet.json", "r") as wallet:
             wallet = json.load(wallet)
+#The "money" list calculate the initial balance for the player
             money = wallet["money"]
         self.balance = sum(money)
+#The other variables below are set to their initial values
         self.bet_size = 10.00
         self.last_payout = 0.00
         self.total_won = 0.00
         self.total_wager = 0.00
-
+#The method "get_data" returns a dictionary containing the player's data
     def get_data(self):
         player_data = {}
+# In the code below the player's data (palyer balance, player bet size, player last payout
+# the amount a player won, and the total wager are formatted as strings with two decimal
+# places and stored as values in the dictionary)
         player_data['balance'] = "{:.2f}".format(self.balance)
         player_data['bet_size'] = "{:.2f}".format(self.bet_size)
+#If the players last payout is zero, it is represented as "N/A" in the directionary
         player_data['last_payout'] = "{:.2f}".format(self.last_payout) if self.last_payout else "N/A"
         player_data['total_won'] = "{:.2f}".format(self.total_won)
         player_data['total_wager'] = "{:.2f}".format(self.total_wager)
         return player_data
-
+# A new method "place_bet is created"
     def place_bet(self):
+# a variable "bet" is define and represents a players initial bet size
         bet = self.bet_size
+# a players new balance equals the initial balance minus the bet size 
         self.balance -= bet
+# a players new total wager equals the initial total wager minus the bet size 
         self.total_wager += bet
 
-
+#A new class called "Reel" is defined
 class Reel:
+#The method __init__ initializes the instance variables of the object "Reel"
     def __init__(self, pos):
+#Symbols in the reel are stored by using "symbol_list" which is a "pygame.sprite.Group"
         self.symbol_list = pygame.sprite.Group()
+# A list of symbols are randomly shuffled and truncated to a length of 5
         self.shuffled_keys = list(symbols.keys())
         random.shuffle(self.shuffled_keys)
         self.shuffled_keys = self.shuffled_keys[:5] # Only matters when there are more than 5 symbols
-
+# the variable self.reel_reel_is_spinning indicate whether the reel is crruently spinning
+# Starting the game the reel is not spinning therefore it is set to "False"
         self.reel_is_spinning = False
 
         # Sounds
         # self.stop_sound = pygame.mixer.Sound('audio/stop.mp3')
         # self.stop_sound.set_volume(0.5)
-
+        
+#A for loop is created. It creates instances of the class "Symbol" for each symbol 
+# in the "shuffled_keys" which is a list with the symbols
+#  Each symbol is added to the symbol_list group with the corresponding position pos and index idx
+#The position value is updated to 150 which shifts the vertically for each symbol
         for idx, item in enumerate(self.shuffled_keys):
             self.symbol_list.add(Symbol(symbols[item], pos, idx))
             pos = list(pos)
             pos[1] += 150
             pos = tuple(pos)
+# A new method called "animate" is created and takes a prarameter "delta_time"
     def animate(self, delta_time):
+# The if statement checks if the reel is currently spinning
+# If it is the case, the current delay_time and spin_time is substracted by delta_time *1000
+# Furthermore, reel_is_stopping is set to False
         if self.reel_is_spinning:
             self.delay_time -= (delta_time * 1000)
             self.spin_time -= (delta_time * 1000)
             reel_is_stopping = False
-
+# The next if statement checks if the spin_time is smaller than zero. If so, 
+# this means that the reel is stopping. Therefore, reel_is_stopping is set to True
             if self.spin_time < 0:
                 reel_is_stopping = True
 
             # Stagger reel spin start animation
+# The next if statement checks if the delay_time equals zero or if it is lower. 
             if self.delay_time <= 0:
 
                 # Iterate through all 5 symbols in reel; truncate; add new random symbol on top of stack
                 for symbol in self.symbol_list:
                     symbol.rect.bottom += 50
 
-                    # Correct spacing is dependent on the above addition eventually hitting 1200
+ # If statement checks if the symbol's rect top attribute has reached 600
                     if symbol.rect.top == 600:
+# If reel_is_stopping is True, it sets self.reel_is_spinning to False, indicating that the reel has stopped
                         if reel_is_stopping:
                             self.reel_is_spinning = False
                             # self.stop_sound.play()
@@ -115,7 +141,8 @@ class Reel:
                         symbol.kill()
                         # Spawn random symbol in place of the above
                         self.symbol_list.add(Symbol(symbols[random.choice(self.shuffled_keys)], ((symbol.x_val), -150), symbol_idx))
-
+#A new code named "start_spin" is defined within the class which 
+#takes the parameter "delay_time". 
     def start_spin(self, delay_time):
         self.delay_time = delay_time
         self.spin_time = 1000 + delay_time
