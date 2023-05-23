@@ -9,14 +9,14 @@ Welcome to our innovative Learning platform. With this program you can study fun
 <img src="graphic/Readme/memory.png" width="200"> <br />
 
 **Casino (Roulette and Slot machine):** <br />
-<img src="graphic/Readme/roulette.png" width="200">__
+<img src="graphic/Readme/roulette.png" width="200"> <br />
 <img src="graphic/Readme/slot.png" width="200"> <br />
 
 **Shop:** <br />
 <img src="graphic/Readme/shop.png" width="200"> <br />
 
 **Showroom:** <br />
-<img src="graphic/Readme/showroom.png" width="200"> <br />
+<img src="graphic/Readme/showroom.png" width="300"> <br />
 
 Once you have bought items you do not have to worry about losing them once you close the menu. Your earned money as well as any bought items is saved and will be availble for you to use once you decide to continue studying with our project. 
 
