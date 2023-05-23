@@ -6,14 +6,14 @@ Welcome to our innovative Learning platform. With this program you can study fun
 <img src="graphic/Readme/menu.png" width="200"> <br />
 
 **Learning with SGMM or accounting memory:** <br />
-<img src="graphic/Readme/memory.png" width="200"> <br />
+<img src="graphic/Readme/memory.png" width="300"> <br />
 
 **Casino (Roulette and Slot machine):** <br />
-<img src="graphic/Readme/roulette.png" width="200"> <br />
-<img src="graphic/Readme/slot.png" width="200"> <br />
+<img src="graphic/Readme/roulette.png" width="300"> <br />
+<img src="graphic/Readme/slot.png" width="300"> <br />
 
 **Shop:** <br />
-<img src="graphic/Readme/shop.png" width="200"> <br />
+<img src="graphic/Readme/shop.png" width="300"> <br />
 
 **Showroom:** <br />
 <img src="graphic/Readme/showroom.png" width="300"> <br />
