@@ -22,6 +22,8 @@ Download a zip file of our project via the green button on the top right. <br />
 4. Open the file "menu.py" and run it. 
 5. Finally: Learn Hard, Play Hard!
 
+If you are using two screens and find that the menu or game window is not fully visible on one screen, you can try moving it to the other screen.
+
 # Debug
 If you have any problem running the project please make sure that you have all the necessary libraries installed. Namely, those are: 
 1. tkinter
