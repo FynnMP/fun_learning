@@ -43,8 +43,8 @@ class Game():
         self.level = 1
         self.level_complete = False
 
-        # aliens
-        self.all_aliens = [f for f in os.listdir('graphic/memory/content_accounting') if os.path.isfile(os.path.join('graphic/memory/content_accounting', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
+        # tiles
+        self.all_tiles = [f for f in os.listdir('graphic/memory/content_accounting') if os.path.isfile(os.path.join('graphic/memory/content_accounting', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
 
         # sort list with all possible memory cards by number 
         def custom_sort_key(file_name):
@@ -58,7 +58,7 @@ class Game():
             else:
                 return file_number * 2 + 1
         # finally sorting list of all memory cards 
-        self.all_aliens = sorted(self.all_aliens, key=custom_sort_key)
+        self.all_tiles = sorted(self.all_tiles, key=custom_sort_key)
 
 
 
