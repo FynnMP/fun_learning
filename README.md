@@ -15,7 +15,12 @@ Once you have bought items you do not have to worry about losing them once you c
 
 # How to run
 Download a zip file of our project via the green button on the top right. <br />
-<img src="graphic/Readme/download.png" width="400"> 
+<img src="graphic/Readme/download.png" width="500"> 
+
+2. Locally unpack the zip file on your computer.
+3. Open the unpacked folder in VS Code or another IDE.
+4. Open the file "menu.py" and run it. 
+5. Finally: Learn Hard, Play Hard!
 
 # Debug
 If you have any problem running the project please make sure that you have all the necessary packages libraries installed. Namely those are: 
