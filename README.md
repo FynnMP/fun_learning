@@ -1,6 +1,6 @@
 # LEARNxCASINO - Learn Hard, Play Hard!
 
-Welcome to our innovative Learning platform. With this program you can study fundamental concepts of the St. Galler Management Modell as well as basic accounting principles. Your hardly earned money can be used to buy watches, cars, boats and art in the shop. If you are a rather risk loving person you can try multiplying your money in our casino. Don´t forget to check out your treasures in the showroom. Have fun and best of luck!
+Welcome to our innovative Learning platform. With this program you can study fundamental concepts of the St. Galler Management Modell as well as basic accounting principles. Your hard-earned money can be used to buy watches, cars, boats and art in the shop. If you are a rather risk loving person you can try multiplying your money in our casino. Don´t forget to check out your treasures in the showroom. Have fun and best of luck!
 
 Menu                                                    |  SGMM / accounting memory                              |  Roulette           
 :------------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------:
@@ -23,7 +23,7 @@ Download a zip file of our project via the green button on the top right. <br />
 5. Finally: Learn Hard, Play Hard!
 
 # Debug
-If you have any problem running the project please make sure that you have all the necessary libraries installed. Namely those are: 
+If you have any problem running the project please make sure that you have all the necessary libraries installed. Namely, those are: 
 1. tkinter
 2. pygame
 3. subprocess 
