@@ -307,23 +307,26 @@ class Machine:
         self.win_animation_ongoing = False
 
         # Results
+        #The dictionary self.pre_result keeps track of the previous result
+        # The dictionary self.spin_result keeps track of the current result
         self.prev_result = {0: None, 1: None, 2: None, 3: None, 4: None}
         self.spin_result = {0: None, 1: None, 2: None, 3: None, 4: None}
-
+        
+        #initializing of reels, player, and user interface (UI)
         self.spawn_reels()
         self.currPlayer = Player()
         self.ui = UI(self.currPlayer)
 
         # Import sounds
-        # self.spin_sound = pygame.mixer.Sound('audio/spinclip.mp3')
-        # self.spin_sound.set_volume(0.15)
+        # SAnd setting volumes for the different sounds that are being imported
         self.win_three = pygame.mixer.Sound('audio/win.wav')
         self.win_three.set_volume(0.6)
         self.win_four = pygame.mixer.Sound('audio/win.wav')
         self.win_four.set_volume(0.7)
         self.win_five = pygame.mixer.Sound('audio/win.wav')
         self.win_five.set_volume(0.8)
-
+        
+    # A new method "cooldown" is created for managing cooldown and the game state related to the function
     def cooldowns(self):
         # Only lets player spin if all reels are NOT spinning
         for reel in self.reel_list:
@@ -334,29 +337,39 @@ class Machine:
         if not self.can_toggle and [self.reel_list[reel].reel_is_spinning for reel in self.reel_list].count(False) == 5:
             self.can_toggle = True
             self.spin_result = self.get_result()
-
+       
+            #checking if the palyer won after spinning, if so win data is assigned to 
+            # self.win.data
             if self.check_wins(self.spin_result):
                 self.win_data = self.check_wins(self.spin_result)
                 # Play the win sound
                 self.play_win_sound(self.win_data)
+                #Pay the player by calling self.pay_player(self.win_data, self.currPlayer)
                 self.pay_player(self.win_data, self.currPlayer)
                 self.win_animation_ongoing = True
+                # Angle is randomly assigned to self.ui.win_text_angle
                 self.ui.win_text_angle = random.randint(-4, 4)
-
+                
+    #  method input is responsible for handling user input
+    # The state of all keys is stored in the "keys" variable
     def input(self):
         keys = pygame.key.get_pressed()
 
         # Checks for space key or enter key, ability to toggle spin, and balance to cover bet size
         if (keys[pygame.K_SPACE] or keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER]) and self.can_toggle and self.currPlayer.balance >= self.currPlayer.bet_size:
-            self.toggle_spinning()
-            self.spin_time = pygame.time.get_ticks()
-            self.currPlayer.place_bet()
-            self.machine_balance += self.currPlayer.bet_size
-            self.currPlayer.last_payout = None
+            #checks if conditions are met then the actions below are performed:
+            self.toggle_spinning()  # toggle the spinning  
+            self.spin_time = pygame.time.get_ticks() #tracking the spinning time
+            self.currPlayer.place_bet() #Deducting the bet amount from a players balance
+            self.machine_balance += self.currPlayer.bet_size #Machine balance is increased by the bet amount
+            self.currPlayer.last_payout = None #Indicating that there is no previous payout
 
-        
+        #Lines helps handling the input for increasing and decreasing the bet size
         if keys[pygame.K_UP] and self.can_toggle and self.currPlayer.balance > self.currPlayer.bet_size:
+            #bet size is increased by 1 if the up arrow key is pressed and the 
+            # the spinning can be toggled and the player's balance is greater than the current size
             self.currPlayer.bet_size += 1
+            #delay of 200ms to avoid rapid key presses
             pygame.time.wait(200)
         if keys[pygame.K_DOWN] and self.can_toggle and self.currPlayer.bet_size >0:
             self.currPlayer.bet_size -= 1
@@ -364,43 +377,58 @@ class Machine:
 
 
 
-            
+     #Method for animating the reels        
     def draw_reels(self, delta_time):
+        #Iterating over each reel and calling animate() method and
+        # passing delta_time as an argument
         for reel in self.reel_list:
             self.reel_list[reel].animate(delta_time)
-
+            
+#Method for creating and positioning the reels
     def spawn_reels(self):
+        #checking if empty, if so: initializing variables x_topleft and y_topleft
         if not self.reel_list:
             x_topleft, y_topleft = 10, -300
+        # x_topleft and y_topleft are initialized based on while loop amd if statement
         while self.reel_index < 5:
             if self.reel_index > 0:
                 x_topleft, y_topleft = x_topleft + (150 + X_OFFSET), y_topleft
-            
+            #initiating the Reel class with the current position
+            # resulting reel object is added to self.reel_list
             self.reel_list[self.reel_index] = Reel((x_topleft, y_topleft)) # Need to create reel class
             self.reel_index += 1
-
+            
+    # toggling the spinning state of the machine
     def toggle_spinning(self):
+        #Checking if spinning can be toggled if so:
         if self.can_toggle:
-            self.spin_time = pygame.time.get_ticks()
-            self.spinning = not self.spinning
-            self.can_toggle = False
-
+            self.spin_time = pygame.time.get_ticks() #Setting current time
+            self.spinning = not self.spinning #self.spinning" is updated
+            self.can_toggle = False #Avoiding immediate toggling
+ 
+            # for loop that iterates reel through "self.reel_list"
             for reel in self.reel_list:
+                #"start_spin" method of each reel is called 
                 self.reel_list[reel].start_spin(int(reel) * 200)
                 #self.spin_sound.play()
+                #No on going win animation
                 self.win_animation_ongoing = False
-
+    #Retrieving the result of each reel spin
     def get_result(self):
+        # Interating over each reel and ssigning the result of calling
+        # the method "reel_spin_result()" of each reel to respective key in "self.spin_result"
         for reel in self.reel_list:
             self.spin_result[reel] = self.reel_list[reel].reel_spin_result()
+        #returning self.spin_result
         return self.spin_result
-
+    # checking  for winning combinations in the spin result.
     def check_wins(self, result):
+        #Initializing empty list
         hits = {}
         horizontal = flip_horizontal(result)
         for row in horizontal:
             for sym in row:
-                if row.count(sym) > 2: # Potential win
+                if row.count(sym) > 2: # Potential win if symbol appears more than twice
                     possible_win = [idx for idx, val in enumerate(row) if sym == val]
 
                     # Check possible_win for a subsequence longer than 2 and add to hits
@@ -409,53 +437,70 @@ class Machine:
         if hits:
             self.can_animate = True
             return hits
-
+    #responsible for calculating and updating the player's balance based on the win data
     def pay_player(self, win_data, curr_player):
+        #initializing multiplier and spin_payout
         multiplier = 0
         spin_payout = 0
+        #  iterating over the values in win_data and adding the length of the subsequence (v[1]) 
+        # to the multiplier for each winning combination.
         for v in win_data.values():
             multiplier += len(v[1])
-        spin_payout = (multiplier * curr_player.bet_size)
-        curr_player.balance += spin_payout
+        spin_payout = (multiplier * curr_player.bet_size) #Calculation of spin_payout
+        curr_player.balance += spin_payout #Updating "curr_player.balance", "self.achine_balance"
+        # "self.machine_balance", "curr_player.last_payout", "curr_player.total_won" based on "spin_payout"
         self.machine_balance -= spin_payout
         curr_player.last_payout = spin_payout
         curr_player.total_won += spin_payout
 
-    # You need to provide sounds and load them in the Machine init function for this to work!
+    # playing the win sounds based on the number of winning combinations.
     def play_win_sound(self, win_data):
         sum = 0
+         # iterating over the values in win_data 
+         # and adding the length of the subsequence (item[1]) to the sum for each winning combination.
         for item in win_data.values():
             sum += len(item[1])
+        #Different song is played based on the value of sum
         if sum == 3: self.win_three.play()
         elif sum == 4: self.win_four.play()
         elif sum > 4: self.win_five.play()
 
+    # animating the winning symbols with the method "win_animation"
     def win_animation(self):
+        # Checking if win_animation is ongoing and win data is available
         if self.win_animation_ongoing and self.win_data:
             for k, v in list(self.win_data.items()):
+                # They key "k" determine the animation row 
                 if k == 1:
                     animationRow = 3
                 elif k == 3:
                     animationRow = 1
                 else:
                     animationRow = 2
+                #The animationCols variable is assigned the 
+                # value of v[1] (the columns of the winning symbols)
                 animationCols = v[1]
                 for reel in self.reel_list:
+                    #If the reel is in the animationCols and animation is allowed 
+                    # (self.can_animate), it sets the fade_in attribute of the corresponding 
+                    # symbol in the third row (animationRow) to True.
                     if reel in animationCols and self.can_animate:
                         self.reel_list[reel].symbol_list.sprites()[animationRow].fade_in = True
+                   #for each symbol in the reel's symbol list, if the symbol's fade_in attribute is False, it sets the fade_out attribute to True.
                     for symbol in self.reel_list[reel].symbol_list:
                         if not symbol.fade_in:
                             symbol.fade_out = True
 
+# Update method  for updating the game state
     def update(self, delta_time):
-        self.cooldowns()
-        self.input()
-        self.draw_reels(delta_time)
-        for reel in self.reel_list:
+        self.cooldowns() #handling cooldown logic related to spinning and toggling.
+        self.input() # handling player input, including spinning the machine and adjusting the bet size.
+        self.draw_reels(delta_time) # Updating and animating the reels
+        for reel in self.reel_list: #iterating over each reel in "self.reel_list"
             self.reel_list[reel].symbol_list.draw(self.display_surface)
-            self.reel_list[reel].symbol_list.update()
-        self.ui.update()
-        self.win_animation()
+            self.reel_list[reel].symbol_list.update() #updating the position and appearance of the symbols.
+        self.ui.update()   # Updating the UI display (player balance, bet size, and instructions)
+        self.win_animation() #animating the winning symbols if a win animation is ongoing.
 
         # Balance/payout debugger
         # debug_player_data = self.currPlayer.get_data()
@@ -474,17 +519,24 @@ def flip_horizontal(result):
     for value in result.values():
         horizontal_values.append(value)
     # 'Rotate' 90 degrees to get text representation of spin in order
+    #initializing rows and cols variables to store the 
+    # dimensions of horizontal_values using len(horizontal_values) and 
+    # len(horizontal_values[0])
     rows, cols = len(horizontal_values), len(horizontal_values[0])
     hvals2 = [[""] * rows for _ in range(cols)]
     for x in range(rows):
         for y in range(cols):
             hvals2[y][rows - x - 1] = horizontal_values[x][y]
     hvals3 = [item[::-1] for item in hvals2]
-    return hvals3
-
+    # The function returns hvals3, which 
+    # represents the spin result with symbols in the correct order.
+    return hvals3 
+# longest_seq is used to find the longest sequential 
+# subsequence in a list. Taking hit as a parameter, which is a list of indices.
 def longest_seq(hit):
     subSeqLength, longest = 1, 1
     start, end = 0, 0
+    #Iterating over the indices in hit except for the last one using a for loop.
     for i in range(len(hit) - 1):
         # Check to see if indices in hit parameter are sequential
         if hit[i] == hit[i + 1] - 1:
@@ -495,12 +547,13 @@ def longest_seq(hit):
                 end = i + 2
         else:
             subSeqLength = 1
-    return hit[start:end]
+    return hit[start:end] # Returning the subsequence from hit using the start and end indices.
 
+# This class represents the game itself
 class Game:
     def __init__(self):
 
-        # General setup
+        # The codes below make the general setup of the game
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption('Slot Machine Demo')
@@ -510,11 +563,13 @@ class Game:
         self.machine = Machine()
         self.delta_time = 0
 
-        # Sound
+        # loading and playing the main sound track using Pygame's
+        # mixer module.The sound volume is set to 0.2, and 
+        # the sound is played in an infinite loop.
         main_sound = pygame.mixer.Sound('audio/track.mp3')
         main_sound.set_volume(0.2)
         main_sound.play(loops = -1)
-
+    # The run() method is the main game loop, running forever until the game is exited.
     def run(self):
 
         self.start_time = pygame.time.get_ticks()
@@ -523,7 +578,8 @@ class Game:
             # Handle quit operation
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    # update money to be used in shop etc. 
+                    # update money to be used in shop etc. by retrieving  
+                    #  the new balance from the Machine instance and storing it in the file. 
                     with open("wallet.json", "w") as jsonFile: 
                         money = []
                         new_balance = self.machine.currPlayer.get_data()
@@ -535,16 +591,21 @@ class Game:
                     pygame.quit()
                     sys.exit()
 
-            # Time variables
+            # Time variables, the lines calulate the time difference between the current tick
+            # the previous tick. Through this the elapsed time since the last frame update is obtained
             self.delta_time = (pygame.time.get_ticks() - self.start_time) / 1000
             self.start_time = pygame.time.get_ticks()
+            
+           
 
-            pygame.display.update()
-            self.screen.blit(self.bg_image, (0, 0))
-            self.machine.update(self.delta_time)
-            self.screen.blit(self.grid_image, (0, 0))
-            self.clock.tick(FPS)
+            pygame.display.update() #updating the display
+            self.screen.blit(self.bg_image, (0, 0))  # blitting images onto the screen, 
+            self.machine.update(self.delta_time) # updating the game state
+            self.screen.blit(self.grid_image, (0, 0)) # blits the grid image onto the screen at the position (0, 0).
+            self.clock.tick(FPS) #controlling the frame rate.
 
+#checking if the module is being run as the main program
+#if so the game loop starts
 if __name__ == '__main__':
     game = Game()
     game.run()
