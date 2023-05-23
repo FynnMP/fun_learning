@@ -11,7 +11,7 @@ Slot machine                                            |  Shop                 
 <img src="graphic/Readme/slot.png" width="320">         |  <img src="graphic/Readme/shop.png" width="250">       | <img src="graphic/Readme/showroom.png" width="240">
 
 
-Once you have bought items you do not have to worry about losing them once you close the menu. Your earned money as well as any bought items are saved and will be availble for you once you decide to continue studying with our project. 
+Once you have bought items you do not have to worry about losing them once you close the menu. Your earned money as well as any bought items are saved and will be available for you once you decide to continue studying with our project. 
 
 # How to run
 Download a zip file of our project via the green button on the top right. <br />
@@ -23,7 +23,7 @@ Download a zip file of our project via the green button on the top right. <br />
 5. Finally: Learn Hard, Play Hard!
 
 # Debug
-If you have any problem running the project please make sure that you have all the necessary packages libraries installed. Namely those are: 
+If you have any problem running the project please make sure that you have all the necessary libraries installed. Namely those are: 
 1. tkinter
 2. pygame
 3. subprocess 
