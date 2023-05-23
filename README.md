@@ -43,12 +43,9 @@ We embarked on a mission to make learning more engaging and digitally immersive 
 
 # Group Participants
 Armel Gyres Wetchoko, Julian Carlen, Raul Stillhart and Fynn Pohl 
-
-
-
-
-
-
-
+<br />
+<br />
+<br />
+<br />
 ***Disclaimer:*** The logos used in this project are solely intended for educational purposes and are not to be distributed, reproduced, or used for any monetary gain. The inclusion of these does not imply any endorsement or affiliation with the respective organizations or entities. This project is not an official product of the University of St. Gallen, nor does it represent the views or opinions of its faculty, staff, or students. The sole purpose of this project is to provide educational content and does not imply any association or endorsement by the University of St. Gallen or its affiliated individuals. Furthermore, it should not serve in any way as an incitement to gamble. 
 Gambling can be addictive and should be handled with caution. 
