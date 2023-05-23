@@ -1,4 +1,4 @@
-# fun_learning
+# Learn Hard, Play Hard!
 ADD DESCRIPTION HERE
 
 1. HOW WE CAME UP WITH THIS
