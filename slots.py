@@ -35,11 +35,11 @@ TEXT_COLOR = 'White'
 # The code below defines a directionary called "symbols"
 # Symbol names are mapped to their corresponding file paths
 symbols = {
-    'diamond': f"{SYM_PATH}/0_coin.png", 
-    'floppy': f"{SYM_PATH}/0_eth.png",
-    'hourglass': f"{SYM_PATH}/0_sg.png",
-    'hourglass2': f"{SYM_PATH}/0_unisg.png",
-    'telephone': f"{SYM_PATH}/0_swiss.png"
+    'coin': f"{SYM_PATH}/0_coin.png", 
+    'eth': f"{SYM_PATH}/0_eth.png",
+    'sg': f"{SYM_PATH}/0_sg.png",
+    'unisg': f"{SYM_PATH}/0_unisg.png",
+    'swiss': f"{SYM_PATH}/0_swiss.png"
 }
 
 
@@ -55,7 +55,7 @@ class Player():
             money = wallet["money"]
         self.balance = sum(money)
 #The other variables below are set to their initial values
-        self.bet_size = 10.00
+        self.bet_size = 5.00
         self.last_payout = 0.00
         self.total_won = 0.00
         self.total_wager = 0.00

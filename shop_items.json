@@ -2,112 +2,112 @@
     "item1": {
         "name": "watch1",
         "description": "tbd",
-        "price": 25,
+        "price": 50,
         "image": "./graphic/shop/watches/watch1.jpg",
         "image_show": "./graphic/shop/watches/watch1_show.jpg"
     },
     "item2": {
         "name": "watch2",
         "description": "tbd",
-        "price": 30,
+        "price": 100,
         "image": "./graphic/shop/watches/watch2.jpg",
         "image_show": "./graphic/shop/watches/watch2_show.jpg"
     },
     "item3": {
         "name": "watch3",
         "description": "tbd",
-        "price": 12,
+        "price": 150,
         "image": "./graphic/shop/watches/watch3.jpg",
         "image_show": "./graphic/shop/watches/watch3_show.jpg"
     },
     "item4": {
         "name": "watch4",
         "description": "tbd",
-        "price": 20,
+        "price": 300,
         "image": "./graphic/shop/watches/watch4.jpg",
         "image_show": "./graphic/shop/watches/watch4_show.jpg"
     },
     "item5": {
         "name": "car1",
         "description": "tbd",
-        "price": 30,
+        "price": 100,
         "image": "./graphic/shop/cars/car1.jpg",
         "image_show": "./graphic/shop/cars/car1_show.jpg"
     },
     "item6": {
         "name": "car2",
         "description": "tbd",
-        "price": 100,
+        "price": 250,
         "image": "./graphic/shop/cars/car2.jpg",
         "image_show": "./graphic/shop/cars/car2_show.jpg"
     },
     "item7": {
         "name": "car3",
         "description": "tbd",
-        "price": 100,
+        "price": 400,
         "image": "./graphic/shop/cars/car3.jpg",
         "image_show": "./graphic/shop/cars/car3_show.jpg"
     },
     "item8": {
         "name": "car4",
         "description": "tbd",
-        "price": 100,
+        "price": 500,
         "image": "./graphic/shop/cars/car4.jpg",
         "image_show": "./graphic/shop/cars/car4_show.jpg"
     },
     "item9": {
         "name": "boat1",
         "description": "tbd",
-        "price": 100,
+        "price": 200,
         "image": "./graphic/shop/boats/boat1.jpg",
         "image_show": "./graphic/shop/boats/boat1_show.jpg"
     },
     "item10": {
         "name": "boat2",
         "description": "tbd",
-        "price": 100,
+        "price": 300,
         "image": "./graphic/shop/boats/boat2.jpg",
         "image_show": "./graphic/shop/boats/boat2_show.jpg"
     },
     "item11": {
         "name": "boat3",
         "description": "tbd",
-        "price": 100,
+        "price": 500,
         "image": "./graphic/shop/boats/boat3.jpg",
         "image_show": "./graphic/shop/boats/boat3_show.jpg"
     },
     "item12": {
         "name": "boat4",
         "description": "tbd",
-        "price": 100,
+        "price": 700,
         "image": "./graphic/shop/boats/boat4.jpg",
         "image_show": "./graphic/shop/boats/boat4_show.jpg"
     },
     "item13": {
         "name": "art1",
         "description": "tbd",
-        "price": 100,
+        "price": 500,
         "image": "./graphic/shop/art/art1.png",
         "image_show": "./graphic/shop/art/art1_show.png"
     },
     "item14": {
         "name": "art2",
         "description": "tbd",
-        "price": 100,
+        "price": 500,
         "image": "./graphic/shop/art/art2.png",
         "image_show": "./graphic/shop/art/art2_show.png"
     },
     "item15": {
         "name": "art3",
         "description": "tbd",
-        "price": 100,
+        "price": 500,
         "image": "./graphic/shop/art/art3.png",
         "image_show": "./graphic/shop/art/art3_show.png"
     },
     "item16": {
         "name": "art4",
         "description": "tbd",
-        "price": 1,
+        "price": 500,
         "image": "./graphic/shop/art/art4.png",
         "image_show": "./graphic/shop/art/art4_show.png"
     }

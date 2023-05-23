@@ -84,7 +84,7 @@ class Game():
         self.background_image = pygame.transform.scale(self.background_image, (WINDOW_HEIGHT, WINDOW_WIDTH))
 
     def increase_score(self):
-        self.score += 10
+        self.score += 5
 
     def decrease_score(self):
         self.score -= 5
