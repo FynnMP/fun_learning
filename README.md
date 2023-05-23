@@ -11,7 +11,7 @@ Slot machine                                            |  Shop                 
 <img src="graphic/Readme/slot.png" width="320">         |  <img src="graphic/Readme/shop.png" width="250">       | <img src="graphic/Readme/showroom.png" width="240">
 
 
-Once you have bought items you do not have to worry about losing them once you close the menu. Your earned money as well as any bought items is saved and will be availble for you to use once you decide to continue studying with our project. 
+Once you have bought items you do not have to worry about losing them once you close the menu. Your earned money as well as any bought items are saved and will be availble for you once you decide to continue studying with our project. 
 
 # How to run
 
