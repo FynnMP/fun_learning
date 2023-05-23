@@ -11,5 +11,5 @@ Dont worry you can close the program and restart the menu at a later stage. Your
 3. HOW WE CAME UP WITH THIS
 4. THANKS TO ... AND NAMES
 
-Disclaimer: This project is not an official product of the University of St. Gallen. Furthermore, it should not serve in any way as an incitement to gamble. 
+*Disclaimer:* This project is not an official product of the University of St. Gallen. Furthermore, it should not serve in any way as an incitement to gamble. 
 Gambling can be addictive and should be handled with caution. 
