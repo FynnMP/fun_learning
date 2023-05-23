@@ -3,7 +3,7 @@
 Welcome to our innovative Learning platform. With this program you can study fundamental concepts of the St. Galler Management Modell as well as basic accounting principles. Your hardly earned money can be used to buy watches, cars, boats and art in the shop. If you are a rather risk loving person you can try multiplying your money in our casino. Don´t forget to check out your treasures in the showroom. Have fun and best of luck!
 
 **Menu:** 
-
+![Menu Image](graphic/readme/menu.png)
 **Learning with SGMM or accounting memory:**
 
 **Casino (Roulette and Slot machine):**
@@ -12,7 +12,7 @@ Welcome to our innovative Learning platform. With this program you can study fun
 
 **Showroom:** 
 
-Once you have bought items you do not have to worry about losing them once you close the menu. Your earned money as well as any bought items is saved and will be availble for you to use once you decide to continue learning with our project. 
+Once you have bought items you do not have to worry about losing them once you close the menu. Your earned money as well as any bought items is saved and will be availble for you to use once you decide to continue studying with our project. 
 
 # How to run
 
