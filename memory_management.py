@@ -43,8 +43,8 @@ class Game():
         self.level = 1
         self.level_complete = False
 
-        # tiles
-        self.all_tiles = [f for f in os.listdir('graphic/memory/content_management') if os.path.isfile(os.path.join('graphic/memory/content_management', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
+        # graphics
+        self.all_graphics = [f for f in os.listdir('graphic/memory/content_management') if os.path.isfile(os.path.join('graphic/memory/content_management', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
 
         # sort list with all possible memory cards by number 
         def custom_sort_key(file_name):
@@ -58,7 +58,7 @@ class Game():
             else:
                 return file_number * 2 + 1
         # finally sorting list of all memory cards 
-        self.all_tiles = sorted(self.all_tiles, key=custom_sort_key)
+        self.all_graphics = sorted(self.all_graphics, key=custom_sort_key)
 
 
 
@@ -136,33 +136,33 @@ class Game():
                 self.flipped = []
 
     def generate_level(self, level):
-        self.aliens = self.select_random_aliens(self.level)
+        self.graphics = self.select_random_graphics(self.level)
         self.level_complete = False
         self.rows = self.level + 1
         self.cols = 4
-        self.generate_tileset(self.aliens)
+        self.generate_tileset(self.graphics)
 
-    def generate_tileset(self, aliens):
+    def generate_tileset(self, graphics):
         self.cols = self.rows = self.cols if self.cols >= self.rows else self.rows
 
         TILES_WIDTH = (self.img_width * self.cols + self.padding * 3)
         LEFT_MARGIN = RIGHT_MARGIN = (self.width - TILES_WIDTH) // 2
         self.tiles_group.empty()
 
-        for i in range(len(aliens)):
+        for i in range(len(graphics)):
             x = LEFT_MARGIN + ((self.img_width + self.padding) * (i % self.cols))
             y = self.margin_top + (i // self.rows * (self.img_height + self.padding))
-            tile = Tile(aliens[i], x, y)
+            tile = Tile(graphics[i], x, y)
             self.tiles_group.add(tile)
 
-    def select_random_aliens(self, level): 
-        aliens = []
-        aliens_filter = random.sample(range(0,24,2), (self.level + self.level + 2))
-        for i in aliens_filter:
-            aliens.append(self.all_aliens[i])
-            aliens.append(self.all_aliens[i+1])
-        random.shuffle(aliens)
-        return aliens
+    def select_random_graphics(self, level): 
+        graphics = []
+        graphics_filter = random.sample(range(0,24,2), (self.level + self.level + 2))
+        for i in graphics_filter:
+            graphics.append(self.all_graphics[i])
+            graphics.append(self.all_graphics[i+1])
+        random.shuffle(graphics)
+        return graphics
 
 
 
