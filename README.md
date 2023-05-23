@@ -7,9 +7,24 @@ ADD DESCRIPTION HERE WITH PICTURES
 Dont worry you can close the program and restart the menu at a later stage. Your earned money and bought items will be saved. 
 
 1. HOW TO RUN / USE
-2. HOW TO DEBUG
-3. HOW WE CAME UP WITH THIS
-4. THANKS TO ... AND NAMES
+# Debug
+If you have any problem running the project please make sure that you have all the necessary packages libraries installed. Namely those are: 
+1. tkinter
+2. pygame
+3. subprocess 
+4. sys
+5. json
+6. random
+7. os
+8. ctypes
+
+Apart from pygame and tkinter the libraries should be already installed per default with the latest version of python. To install the needed libraries use the terminal and the "pip install {packagename}" command. 
+
+# Ideation
+We embarked on a mission to make learning more engaging and digitally immersive by combining it with the excitement of casino games. As four students we have experienced the exhaustion of studying for countless exams and thus thought about a solution. Our project aims to revolutionize education by providing a platform where learning and fun seamlessly intertwine.
+
+# Group Participants
+Armel Gyres Wetchoko, Julian Carlen, Raul Stillhart and Fynn Pohl 
 
 *Disclaimer:* This project is not an official product of the University of St. Gallen. Furthermore, it should not serve in any way as an incitement to gamble. 
 Gambling can be addictive and should be handled with caution. 
