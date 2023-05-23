@@ -4,7 +4,7 @@ Welcome to our innovative Learning platform. With this program you can study fun
 
 Menu                                                    |  SGMM / accounting memory                              |  Roulette           
 :------------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------:
-<img src="graphic/Readme/menu.png" width="200">         |  <img src="graphic/Readme/memory.png" width="200">     | <img src="graphic/Readme/roulette.png" width="300"> 
+<img src="graphic/Readme/menu.png" width="200">         |  <img src="graphic/Readme/memory.png" width="300">     | <img src="graphic/Readme/roulette.png" width="300"> 
 
 Slot machine                                            |  Shop                                                  |  Showroom           
 :------------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------:
