@@ -1,57 +1,51 @@
-# first the necessary libraries to create a GUI are downloaded
+# Import necessary libraries for creating a GUI
 from tkinter import *
 from tkinter.ttk import *
 import subprocess, sys
 import json
 
-# A class used to place the images/ snippeds of the games on the screen.
+# A class used to place the images/snippets of the games on the screen.
 # The class takes the image's directory and the x and y coordinates.
 class GameImg:
-    def __init__(self, filename, y_pos, x_pos=0 ):
-        dis_x = 300 # Fixed add on to the x coordinate 
-        self.im = PhotoImage(file = filename) # creating a photoimage object to use within tkinter
-        self.lbl = Label(window, image = self.im) # initiating a label to be positioned on the window
-        self.lbl.place(x=dis_x+x_pos, y=y_pos*dis+0.7*dis, anchor=CENTER) # This line is places the label using the defined coordinates with some fixed addition
+    def __init__(self, filename, y_pos, x_pos=0):
+        dis_x = 300  # Fixed add-on to the x coordinate
+        self.im = PhotoImage(file=filename)  # Create a PhotoImage object to use within tkinter
+        self.lbl = Label(window, image=self.im)  # Initiate a label to be positioned on the window
+        self.lbl.place(x=dis_x + x_pos, y=y_pos * dis + 0.7 * dis, anchor=CENTER)  # Place the label using the defined coordinates with some fixed addition
 
-
-# The NewWindowDescr Class enables the initiation of "top level" windows. 
-# This means that a new window is opened over the "original" one. 
+# The NewWindowDescr class enables the initiation of "top-level" windows.
+# This means that a new window is opened over the "original" one.
 class NewWindowDescr(Toplevel):
+    def __init__(self, master=None, description=None):
+        super().__init__(master=window)  # The Tkinter (Tk()) element which is the underlying the initiation window
+        self.title("Help Terminal")  # The top-level window caption
+        self.geometry("500x350")  # Size of the window
+        self.configure(background="darkgrey")  # Background color of the window
+        # Create different text elements:
+        titel = Label(self, text="Help", font="Helvetica 18 bold", foreground="black", background="darkgrey")  # Title text and all the specifics
+        titel.place(relx=0.5, rely=0.1, anchor=CENTER)  # Determine the position of the text element "title"
+        descr = Label(self, text=description, font="Helvetica 14", foreground="black", background="darkgrey")  # Description text and all the specifics
+        descr.place(relx=0.5, rely=0.5, anchor=CENTER)  # Determine the position of the text element "descr"
 
-    def __init__(self, master = None, description = None):
-
-        super().__init__(master = window) # The Tkinter (Tk()) element which is the underlying the initiation window 
-        self.title("Help Terminal") # The top level window caption
-        self.geometry("500x350") # Size of the window
-        self.configure(background="darkgrey") # Background color of the window 
-        # Creating different text elements:
-        titel = Label(self, text ="Help", font = "Helvetica 18 bold", foreground="black", background="darkgrey") # Titel text and all the specifics
-        titel.place(relx = 0.5, rely = 0.1, anchor = CENTER) # Determining the position of the textelement "titel"
-        descr = Label(self, text = description, font = "Helvetica 14", foreground="black", background="darkgrey") # Description text and all the specifics
-        descr.place(relx = 0.5, rely = 0.5, anchor = CENTER) # Determining the position of the textelement "descr"
-
-# After having defined different classes the actual window is defined and designed
+# After having defined different classes, the actual window is defined and designed
 window = Tk()
-# creating a graphical element of the GUI with the background color white
+# Create a graphical element of the GUI with the background color white
 canvas = Canvas(bg="white")
-# Determining the size of the window
-wgeox, wgeoy = 600 , 650
+# Determine the size of the window
+wgeox, wgeoy = 600, 650
 
+# Putting the HSG logo on the top-left corner
+logo = PhotoImage(file="./graphic/menu/logo_new.png")  # Create a PhotoImage element with the HSG logo file
+logolbl = Label(window, image=logo)  # Initiate a label with the image to display on the canvas and position it
+logolbl.place(x=200, y=30, anchor="nw")  # Position the label with the HSG PhotoImage element
 
-
-# putting the hsg-logo on top left corner
-logo = PhotoImage(file = "./graphic/menu/logo_new.png") # create a photoimage element with the HSG ong file
-logolbl = Label(window, image = logo) # initiate a label with the image to display on the canvas and position it
-logolbl.place(x=200, y=30, anchor="nw") # position label with the hsg photoimage element
-
-# creating dahsed lines to separate the different sections with teh title and the games
+# Create dashed lines to separate the different sections with the title and the games
 dis = 120
-for i in range(200,wgeoy,dis):
-    canvas.create_line(0,i,wgeox,i, dash = (4,2))
+for i in range(200, wgeoy, dis):
+    canvas.create_line(0, i, wgeox, i, dash=(4, 2))
 canvas.pack(fill=BOTH, expand=1)
 
-
-# distance from line to game-title and from line to button
+# Distance from line to game title and from line to button
 dis_lt = 110
 dis_lb = 155
 
