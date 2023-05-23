@@ -8,7 +8,7 @@ class Tile(pygame.sprite.Sprite):
         self.name = filename.split('_')[0]
 
 
-        self.original_image = self.load_image('graphic/memory/content_accounting/' + filename)
+        self.original_image = self.load_image('graphic/memory/content_finance/' + filename)
 
         self.back_image = pygame.image.load('graphic/memory/0_unisg.png').convert_alpha()
         self.back_image = pygame.transform.scale(self.back_image, (80, 80))
@@ -44,7 +44,7 @@ class Game():
         self.level_complete = False
 
         # graphics
-        self.all_graphics = [f for f in os.listdir('graphic/memory/content_accounting') if os.path.isfile(os.path.join('graphic/memory/content_accounting', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
+        self.all_graphics = [f for f in os.listdir('graphic/memory/content_finance') if os.path.isfile(os.path.join('graphic/memory/content_finance', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
 
         # sort list with all possible memory cards by number 
         def custom_sort_key(file_name):

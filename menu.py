@@ -108,15 +108,15 @@ btn1 = Button(window, text="Mangement", command = run_management) # Button eleme
 btn1.place(relx=rx_button1, y=dis+dis_lb, anchor=CENTER) # placing the button
 
 
-# Define function to run accounting memory
-def run_accounting():
+# Define function to run finance memory
+def run_finance():
     python_executable = sys.executable
-    script_file = "memory_accounting.py"
+    script_file = "memory_finance.py"
     command = [python_executable, script_file]
     subprocess.run(command, check=True)
 
-# Creating and placing a button to be clicked to start the accounting memory
-btn1_3 = Button(window, text="Finance", command = run_accounting)
+# Creating and placing a button to be clicked to start the finance memory
+btn1_3 = Button(window, text="Finance", command = run_finance)
 btn1_3.place(relx=rx_button3, y=dis+dis_lb, anchor=CENTER)
 
 

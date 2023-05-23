@@ -1,8 +1,8 @@
 # LEARNxCASINO - Learn Hard, Play Hard!
 
-Welcome to our innovative Learning platform. With this program you can study fundamental concepts of the St. Galler Management Modell as well as basic accounting principles. Your hard-earned money can be used to buy watches, cars, boats and art in the shop. If you are a rather risk loving person you can try multiplying your money in our casino. Don´t forget to check out your treasures in the showroom. Have fun and best of luck!
+Welcome to our innovative Learning platform. With this program you can study fundamental concepts of the St. Galler Management Modell as well as basic corporate finance principles. Your hard-earned money can be used to buy watches, cars, boats and art in the shop. If you are a rather risk loving person you can try multiplying your money in our casino. Don´t forget to check out your treasures in the showroom. Have fun and best of luck!
 
-Menu                                                    |  SGMM / accounting memory                              |  Roulette           
+Menu                                                    |  SGMM / finance memory                              |  Roulette           
 :------------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------:
 <img src="graphic/Readme/menu.png" width="220">         |  <img src="graphic/Readme/memory.png" width="230">     | <img src="graphic/Readme/roulette.png" width="330"> 
 
