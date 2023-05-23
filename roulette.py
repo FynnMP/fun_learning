@@ -79,7 +79,7 @@ btn.bind("<Button>", lambda e: NewWindowDescr(window,
 
 # Add the label that asks the user how much he wants to bet
 how_much = tk.Label(window, text="How much do you want to bet?", font=("Arial", 16), bg="#018137") # define how the label should look like
-how_much.place(x=350, y=500) # place the label on the windwo
+how_much.place(x=350, y=500) # place the label on the windwow
 
 # Add a field where the user can give input
 entry2 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4) # define how the entry field should look like

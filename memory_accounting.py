@@ -158,7 +158,6 @@ class Game():
     def select_random_aliens(self, level): 
         aliens = []
         aliens_filter = random.sample(range(0,24,2), (self.level + self.level + 2))
-        print(self.all_aliens)
         for i in aliens_filter:
             aliens.append(self.all_aliens[i])
             aliens.append(self.all_aliens[i+1])

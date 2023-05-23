@@ -46,6 +46,21 @@ class Game():
         # aliens
         self.all_aliens = [f for f in os.listdir('graphic/memory/content_management') if os.path.isfile(os.path.join('graphic/memory/content_management', f)) and f.endswith(('.png', '.jpg', '.jpeg'))]
 
+        # sort list with all possible memory cards by number 
+        def custom_sort_key(file_name):
+            # Extract the numeric part of the filename
+            file_number = int(file_name.split('_')[0])
+            # Extract the suffix (question or answer) of the filename
+            file_suffix = file_name.split('_')[1]
+            # Multiply the number by 2 for "question" files and add 1 for "answer" files
+            if file_suffix == 'question.png':
+                return file_number * 2
+            else:
+                return file_number * 2 + 1
+        # finally sorting list of all memory cards 
+        self.all_aliens = sorted(self.all_aliens, key=custom_sort_key)
+
+
 
         self.img_width, self.img_height = (80, 80)
         self.padding = 20
@@ -69,7 +84,7 @@ class Game():
         self.background_image = pygame.transform.scale(self.background_image, (WINDOW_HEIGHT, WINDOW_WIDTH))
 
     def increase_score(self):
-        self.score += 10
+        self.score += 5
 
     def decrease_score(self):
         self.score -= 5
@@ -97,7 +112,7 @@ class Game():
                             if len(self.flipped) == 2:
                                 if self.flipped[0] != self.flipped[1]:
                                     self.block_game = True
-                                    self.decrease_score()  # Verringere den Score
+                                    # self.decrease_score()  # Decrease score if wrong card chosen
                                 else:
                                     self.flipped = []
                                     self.increase_score()  # Erhöhe den Score
