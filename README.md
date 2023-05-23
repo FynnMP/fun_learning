@@ -6,13 +6,10 @@ Menu                                                    |  Learning with the SGM
 :------------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------:
 <img src="graphic/Readme/menu.png" width="200">         |  <img src="graphic/Readme/memory.png" width="200">     | <img src="graphic/Readme/roulette.png" width="300"> 
 
-Roulette                                                |  Slot machine
-:------------------------------------------------------:|:------------------------------------------------------:
-<img src="graphic/Readme/roulette.png" width="320">     |  <img src="graphic/Readme/slot.png" width="320"> 
+Slot machine                                            |  Shop                                                  |  Showroom           
+:------------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------:
+<img src="graphic/Readme/slot.png" width="320">         |  <img src="graphic/Readme/shop.png" width="300">       | <img src="graphic/Readme/showroom.png" width="300">
 
-Shop                                                    |  Showroom
-:------------------------------------------------------:|:------------------------------------------------------:
-<img src="graphic/Readme/shop.png" width="300">         |  <img src="graphic/Readme/showroom.png" width="300">
 
 Once you have bought items you do not have to worry about losing them once you close the menu. Your earned money as well as any bought items is saved and will be availble for you to use once you decide to continue studying with our project. 
 
