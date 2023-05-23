@@ -1,5 +1,5 @@
-# LEARNxCASINO
-# Learn Hard, Play Hard!
+# LEARNxCASINO 
+Learn Hard, Play Hard!
 
 ADD DESCRIPTION HERE WITH PICTURES
 Dont worry you can close the program and restart the menu at a later stage. Your earned money and bought items will be saved. 
