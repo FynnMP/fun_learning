@@ -14,7 +14,7 @@ Slot machine                                            |  Shop                 
 Once you have bought items you do not have to worry about losing them once you close the menu. Your earned money as well as any bought items are saved and will be availble for you once you decide to continue studying with our project. 
 
 # How to run
-
+Download our project via the green button on the top right. 
 
 # Debug
 If you have any problem running the project please make sure that you have all the necessary packages libraries installed. Namely those are: 
