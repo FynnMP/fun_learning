@@ -32,6 +32,19 @@ class NewWindowDescr(Toplevel):
         descr = Label(self, text=description, font="Helvetica 14", foreground="black", background="darkgrey")  # Description text and all the specifics
         descr.place(relx=0.5, rely=0.5, anchor=CENTER)  # Determine the position of the text element "descr"
 
+
+class NewWindowQ_A(Toplevel):
+    def __init__(self, master=None, description=None):
+        super().__init__(master=window)  # The Tkinter (Tk()) element which is the underlying the initiation window
+        self.title("Questions and Answers")  # The top-level window caption
+        self.geometry("1000x700")  # Size of the window
+        self.configure(background="darkgrey")  # Background color of the window
+        # Create different text elements:
+        titel = Label(self, text="Questions and Answers", font="Helvetica 12 bold", foreground="black", background="darkgrey")  # Title text and all the specifics
+        titel.place(relx=0.5, rely=0.05, anchor=CENTER)  # Determine the position of the text element "title"
+        descr = Label(self, text=description, font="Helvetica 10", foreground="black", background="darkgrey")  # Description text and all the specifics
+        descr.place(relx=0.5, rely=0.5, anchor=CENTER)  # Determine the position of the text element "descr"
+
 # The actual window for the menu is defined and designed
 window = Tk()
 # Create a graphical element of the GUI with the background color white
@@ -107,6 +120,36 @@ def run_management():
 btn1 = Button(window, text="Mangement", command = run_management) # Button element with the name Management
 btn1.place(relx=rx_button1, y=dis+dis_lb, anchor=CENTER) # placing the button
 
+# Q&A library Button managment 
+btn1_1 = Button(window, text="?", style="W.TButton", width=3)
+btn1_1.place(relx=rx_button1-0.12, y=dis+dis_lb, anchor=CENTER) # Placement of help button
+text_sgmm = "What is management? \n" \
+       "    It's a black box, omnipresent and controversial.\n\n" \
+       "What are two key drivers of management? \n" \
+       "    The two key drivers are uncertainties and insecurities.\n\n" \
+       "What is the definition of sensemaking? \n" \
+       "    It's a communicative process of the everyday constitution of meaning, relating topics to one another in a way that creates meaning, condensing, evaluating.\n\n" \
+       "What is the definition of environment? \n" \
+       "    It's a space of possibility, expectation and action relevant to the existence of organisational value creation.\n\n" \
+       "What is the definition of enactment? \n" \
+       "    It's a concretisation and creation process of New Things.\n\n" \
+       "What is the definition of resource configuration? \n" \
+       "    The possibility space of an organisation must first be developed and then exhausted.\n\n" \
+       "What does horizontal plurality mean? \n" \
+       "    The need to consider a variety of different possibilities as opportunities.\n\n" \
+       "What is the definition of environmental spheres? \n" \
+       "    Discourses that are collectively established and institutionally routinised forms of communication.\n\n" \
+       "What is at the centre of a controversy? \n" \
+       "    There is a tense core issue that subsequently becomes an issue depending on the stakeholders.\n\n" \
+       "What is the task of value creation? \n" \
+       "    It must contribute to satisfying needs and eliminating scarcity and create benefit.\n\n" \
+       "What are three dimensions of a decision? \n" \
+       "    Decision necessities, forms of processing, and decision-making ability.\n\n" \
+       "What are three measures of success from the operational time horizon? \n" \
+       "    Turnover, contribution margins, and margins.\n"
+
+btn1_1.bind("<Button>", lambda e: NewWindowQ_A(window,text_sgmm))
+
 
 # Define function to run finance memory
 def run_finance():
@@ -119,6 +162,35 @@ def run_finance():
 btn1_3 = Button(window, text="Finance", command = run_finance)
 btn1_3.place(relx=rx_button3, y=dis+dis_lb, anchor=CENTER)
 
+# Q&A library Button managment 
+btn1_31 = Button(window, text="?", style="W.TButton", width=3)
+btn1_31.place(relx=rx_button3+0.11, y=dis+dis_lb, anchor=CENTER) # Placement of help button
+text_cf = "What is the formula of the capital asset pricing model (CAPM)?\n" \
+       "    E(ri) = rf + βi * (E(rm) - rf)\n\n" \
+       "What is the beta of the market portfolio?\n" \
+       "    It measures the sensitivity of an asset movement compared to the market portfolio.\n\n" \
+       "What are three determinants of asset betas?\n" \
+       "    Cyclicality, operating leverage, and time horizon of the project.\n\n" \
+       "What is the major risk of debt?\n" \
+       "    The major risk is the default risk.\n\n" \
+       "What is an Initial Public Offering (IPO)?\n" \
+       "    It's the process of offering shares of a private corporation to the general public in a new stock issuance.\n\n" \
+       "What is asymmetric information in the pecking order theory?\n" \
+       "    It affects the choice between internal and external financing and between new issues of debt and equity securities.\n\n" \
+       "What is meant by a random walk?\n" \
+       "    It's a random process in a discrete period.\n\n" \
+       "What are three types of market efficiency?\n" \
+       "    Weak-form, semi-strong-form, and strong-form efficiency.\n\n" \
+       "What is insider trading?\n" \
+       "    Buying or selling a security by someone who has access to material nonpublic information about the security.\n\n" \
+       "What are the two definitions of market efficiency?\n" \
+       '    "There is no free lunch" and "Price equals value".\n\n' \
+       "What is the value at risk (VaR)?\n" \
+       "    It's a measure of the risk of loss for investments.\n\n" \
+       "What is the expected shortfall?\n" \
+       "    It's the average of all losses which are greater or equal to VaR.\n"
+
+btn1_31.bind("<Button>", lambda e: NewWindowQ_A(window,text_cf))
 
 ############### Casino
 # The Casino title is created and then placed using the above specified coordinates and relative positions
