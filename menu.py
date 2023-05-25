@@ -74,16 +74,16 @@ btn = Button(window, text="Help",style="W.TButton")
 btn.place(relx=0.9, y=30, anchor=CENTER) # Placement of help button
 btn.bind("<Button>", lambda e: NewWindowDescr(window,
                                               "         Welcome to our LEARNxCASINO platform. \n"
-                                              "         In the Learning section you can earn money by \n"
-                                              "         memorizing important concepts of Strategic \n"
-                                              "         Management or Accounting. \n"
+                                              "         In the learning section you can earn money by \n"
+                                              "         memorizing important concepts of strategic \n"
+                                              "         management or corporate finance. \n"
                                               "         You can use that money to visit the Casino \n"
                                               "         and easily multiply it - or loose it all. \n"
                                               "         The money you gained can be used in the shop to \n"
-                                              "         buy fancy items, such as cars, watches, \n"
-                                              "         boats, and art. \n"
-                                              "         Don´t forget to inspect your purchased items in \n" 
-                                              "         high resolution in the showroom."))
+                                              "         buy items, such as watches, cars, \n"
+                                              "         boats and art. \n"
+                                              "         Don´t forget to inspect your purchased items in a \n" 
+                                              "         higher resolution in the showroom."))
 
 # relative placement of titles and buttons for each game / casino game
 rx_title = 0.5
