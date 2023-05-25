@@ -257,7 +257,7 @@ WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 BLACK = (0, 0, 0)
 
-FPS = 60
+FPS = 200 # also time until wrongly flipped cards get flipped back, i.e. time to reed card
 clock = pygame.time.Clock()
 
 # Creating an instance of the Game class.
