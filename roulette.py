@@ -51,7 +51,7 @@ image_label = Label(image=roulette_img) # add the image to the label
 image_label.pack() # add the label to the window
 
 # Add the label that asks the user what he wants to bet on
-what_kind_of_bet = tk.Label(window, text="What kind of bet do you want to do?", font=("Arial", 16), bg="#018137") # define how the label should look
+what_kind_of_bet = tk.Label(window, text="What kind of bet do you want?", font=("Arial", 16), bg="#018137") # define how the label should look
 what_kind_of_bet.place(x=320, y=410) # place the label on the window
 
 # Add a field where the user can give input
