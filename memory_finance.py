@@ -1,3 +1,5 @@
+# Special thanks and credits to ivan-yosifov (https://github.com/ivan-yosifov/memory-game) for providing the general code framework for this memory game
+
 # Import pygame for building the game.
 # The random library is used for shuffling graphics and generating random numbers.
 # The os library provides functions for interacting with the operating system.
