@@ -28,9 +28,9 @@ class NewWindowDescr(Toplevel):
         self.geometry("700x300") # Size of the window
         self.configure(background="darkgrey") # Background color of the window 
         # Creating different text elements:
-        titel = Label(self, text ="Instructions for Roulette", font = "Helvetica 18 bold", foreground="black", background="darkgrey") # Titel text and all the specifics
+        titel = Label(self, text ="Instructions for Roulette", font = "Helvetica 14 bold", foreground="black", background="darkgrey") # Titel text and all the specifics
         titel.place(relx = 0.5, rely = 0.1, anchor = CENTER) # Determining the position of the textelement "titel"
-        descr = Label(self, text = description, font = "Helvetica 14", foreground="black", background="darkgrey") # Description text and all the specifics
+        descr = Label(self, text = description, font = "Helvetica 10", foreground="black", background="darkgrey") # Description text and all the specifics
         descr.place(relx = 0.5, rely = 0.5, anchor = CENTER) # Determining the position of the textelement "descr"
 
 # setting style of all widgets
@@ -56,11 +56,11 @@ what_kind_of_bet.place(x=350, y=410) # place the label on the window
 
 # Add a field where the user can give input
 entry1 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4) # define how the label should look
-entry1.place(x=700, y=410) # place the entry field on the window
+entry1.place(x=750, y=410) # place the entry field on the window
 
 # Add a label with feedback to the entry1
 label_feedback_entry1 = tk.Label(window, text="", font=("Arial", 8), bg="#018137") # define how the label should look
-label_feedback_entry1.place(x=700, y=445) # place the label on the window
+label_feedback_entry1.place(x=750, y=445) # place the label on the window
 
 
 
@@ -83,11 +83,11 @@ how_much.place(x=350, y=500) # place the label on the windwow
 
 # Add a field where the user can give input
 entry2 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4) # define how the entry field should look like
-entry2.place(x=700, y=500) # place the entry field on the window
+entry2.place(x=750, y=500) # place the entry field on the window
 
 # Add a label with feedback to the entry2
 label_feedback_entry2 = tk.Label(window, text="", font=("Arial", 8), bg="#018137") # define how the entry field should look like
-label_feedback_entry2.place(x=700, y=535) # place the second entry field on the window
+label_feedback_entry2.place(x=750, y=535) # place the second entry field on the window
 
 # Add the variable current_balance
 with open("wallet.json", "r") as wallet:
@@ -100,7 +100,7 @@ text_current_balance.place(x=350, y=560) # place the label on the window
 
 # Add a label with the actual number of the current balance
 display_current_balance = tk.Label(window, text="$"+str(current_balance), font=("Arial", 16, "bold"), bg="#018137")
-display_current_balance.place(x=520, y=560) # place the label on the window
+display_current_balance.place(x=550, y=560) # place the label on the window
 
 # Create a list with valid user inputs
 valid_entries = ['red', 'black', 'even', 'odd', '1to18', '19to36', '1st 12', '2nd 12', '3rd 12', 'top row', 'middle row', 'bottom row']

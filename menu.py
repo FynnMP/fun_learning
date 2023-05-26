@@ -9,6 +9,7 @@ from tkinter.ttk import *
 import subprocess, sys
 import json
 
+
 # A class used to place the images/snippets of the games on the screen.
 # The class takes the image's directory and the x and y coordinates.
 class GameImg:
@@ -24,12 +25,12 @@ class NewWindowDescr(Toplevel):
     def __init__(self, master=None, description=None):
         super().__init__(master=window)  # The Tkinter (Tk()) element which is the underlying the initiation window
         self.title("Help Terminal")  # The top-level window caption
-        self.geometry("500x350")  # Size of the window
+        self.geometry("600x400")  # Size of the window
         self.configure(background="darkgrey")  # Background color of the window
         # Create different text elements:
-        titel = Label(self, text="Help", font="Helvetica 18 bold", foreground="black", background="darkgrey")  # Title text and all the specifics
+        titel = Label(self, text="Help", font="Helvetica 16 bold", foreground="black", background="darkgrey")  # Title text and all the specifics
         titel.place(relx=0.5, rely=0.1, anchor=CENTER)  # Determine the position of the text element "title"
-        descr = Label(self, text=description, font="Helvetica 14", foreground="black", background="darkgrey")  # Description text and all the specifics
+        descr = Label(self, text=description, font="Helvetica 12", foreground="black", background="darkgrey")  # Description text and all the specifics
         descr.place(relx=0.5, rely=0.5, anchor=CENTER)  # Determine the position of the text element "descr"
 
 
@@ -37,12 +38,12 @@ class NewWindowQ_A(Toplevel):
     def __init__(self, master=None, description=None):
         super().__init__(master=window)  # The Tkinter (Tk()) element which is the underlying the initiation window
         self.title("Questions and Answers")  # The top-level window caption
-        self.geometry("1000x700")  # Size of the window
+        self.geometry("900x700")  # Size of the window
         self.configure(background="darkgrey")  # Background color of the window
         # Create different text elements:
         titel = Label(self, text="Questions and Answers", font="Helvetica 12 bold", foreground="black", background="darkgrey")  # Title text and all the specifics
         titel.place(relx=0.5, rely=0.05, anchor=CENTER)  # Determine the position of the text element "title"
-        descr = Label(self, text=description, font="Helvetica 10", foreground="black", background="darkgrey")  # Description text and all the specifics
+        descr = Label(self, text=description, font="Helvetica 8", foreground="black", background="darkgrey")  # Description text and all the specifics
         descr.place(relx=0.5, rely=0.5, anchor=CENTER)  # Determine the position of the text element "descr"
 
 # The actual window for the menu is defined and designed

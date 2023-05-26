@@ -356,7 +356,7 @@ class Machine:
         keys = pygame.key.get_pressed()
 
         # Checks for space key or enter key, ability to toggle spin, and balance to cover bet size
-        if (keys[pygame.K_SPACE] or keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER]) and self.can_toggle and self.currPlayer.balance >= self.currPlayer.bet_size:
+        if (keys[pygame.K_SPACE] or keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER]) and self.can_toggle and self.currPlayer.balance >= self.currPlayer.bet_size and self.currPlayer.bet_size>0:
             #checks if conditions are met then the actions below are performed:
             self.toggle_spinning()  # toggle the spinning  
             self.spin_time = pygame.time.get_ticks() #tracking the spinning time
