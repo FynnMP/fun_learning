@@ -19,8 +19,8 @@ Download a zip file of our project via the green button on the top right. <br />
 
 2. Locally unpack the zip file on your computer.
 3. Open the unpacked folder in VS Code or another IDE.
-4. Make sure that all the necessary libraries are installed ("pip install -r requirements.txt").
-5. Open the file "menu.py" and run it. 
+4. Make sure that all the necessary libraries are installed by running **pip install -r requirements.txt**.
+5. Open the file **menu.py** and run it. 
 6. Finally: Learn Hard, Play Hard!
 
 If you are using two screens and find that the menu or game window is not fully visible on one screen, you can try moving it to the other screen.
