@@ -52,7 +52,7 @@ image_label.pack() # add the label to the window
 
 # Add the label that asks the user what he wants to bet on
 what_kind_of_bet = tk.Label(window, text="What kind of bet do you want to do?", font=("Arial", 16), bg="#018137") # define how the label should look
-what_kind_of_bet.place(x=350, y=410) # place the label on the window
+what_kind_of_bet.place(x=320, y=410) # place the label on the window
 
 # Add a field where the user can give input
 entry1 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4) # define how the label should look
@@ -66,7 +66,7 @@ label_feedback_entry1.place(x=750, y=445) # place the label on the window
 
 # Help Button
 btn = Button(window, text="Possible Inputs",style="button2.TButton")
-btn.place(x = 400, y=460, anchor=CENTER) # place the button on the window
+btn.place(x = 380, y=460, anchor=CENTER) # place the button on the window
 btn.bind("<Button>", lambda e: NewWindowDescr(window,
     "Number: \t \t Type in the number.\n"
     "Colour: \t \t Type in the colour: 'red' or 'black'.\n"
@@ -79,7 +79,7 @@ btn.bind("<Button>", lambda e: NewWindowDescr(window,
 
 # Add the label that asks the user how much he wants to bet
 how_much = tk.Label(window, text="How much do you want to bet?", font=("Arial", 16), bg="#018137") # define how the label should look like
-how_much.place(x=350, y=500) # place the label on the windwow
+how_much.place(x=320, y=500) # place the label on the windwow
 
 # Add a field where the user can give input
 entry2 = tk.Entry(window, fg='black', bg="gray", font=('Arial', 14), borderwidth=4) # define how the entry field should look like
@@ -96,7 +96,7 @@ with open("wallet.json", "r") as wallet:
 
 # Add a label with the current balance
 text_current_balance = tk.Label(window, text="Current Balance:", font=("Arial", 16), bg="#018137")
-text_current_balance.place(x=350, y=560) # place the label on the window
+text_current_balance.place(x=320, y=560) # place the label on the window
 
 # Add a label with the actual number of the current balance
 display_current_balance = tk.Label(window, text="$"+str(current_balance), font=("Arial", 16, "bold"), bg="#018137")

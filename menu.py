@@ -129,7 +129,8 @@ text_sgmm = "What is management? \n" \
        "What are two key drivers of management? \n" \
        "    The two key drivers are uncertainties and insecurities.\n\n" \
        "What is the definition of sensemaking? \n" \
-       "    It's a communicative process of the everyday constitution of meaning, relating topics to one another in a way that creates meaning, condensing, evaluating.\n\n" \
+       "    It's a communicative process of the everyday constitution of meaning, relating topics to one another in a way that \n" \
+       "    creates meaning, condensing, evaluating.\n\n" \
        "What is the definition of environment? \n" \
        "    It's a space of possibility, expectation and action relevant to the existence of organisational value creation.\n\n" \
        "What is the definition of enactment? \n" \
