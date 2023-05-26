@@ -37,7 +37,7 @@ If you have any problem running the project please make sure that you have all t
 9. os
 10. ctypes
 
-Apart from pillow and pygame the libraries should be already installed by default with the latest version of python. To install the needed libraries use the terminal and the "pip install {packagename}" command. 
+Apart from pillow and pygame the libraries should be already installed by default with the latest version of python. To install the needed libraries you can use our provided requirements.txt file (pip install -r requirements.txt) or install them manually (pip install {packagename}). 
 Also do not manually change the data structure of the json files. Otherwise the interprogram money and inventory logic might break down. To have earned money and bought items available after closing the menu, make sure that you do not clone or download the whole project again, since your progress is only saved locally.  
 
 # Ideation
